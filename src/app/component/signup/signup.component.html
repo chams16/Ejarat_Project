@@ -1,10 +1,12 @@
 <div class="body">
-    <select id="navBar_btn" class=" btn  navBarBtn">
-        <option value="ar"  id="navBar_btn" class=" btn   navBarBtn" data-i18n="arabic">AR</option>
-        <option value="en" id="navBar_btn" class=" btn   navBarBtn" data-i18n="english">EN</option>
-    </select>
+    <div class="row flex-row" style="margin: 0px;">
+        
+        <div class="col " >
+            <button value="ar"  id="navBar_btn" [ngClass]="{'btnenSmall': selectedLanguage === 'en'}" [ngClass]="{'btnarSmall': selectedLanguage === 'ar'}" class=" btn    navBarBtnlang" data-i18n="arabic" (click)="switchLanguage()">{{selectedLanguage=='en'?'AR':'EN'}}</button>
+        </div>
+    </div>
     
-    <div class="main">
+    <div class="main" style="padding-bottom: 50px;">
     
         <section class="signup">
             <!-- <img src="images/signup-bg.jpg" alt=""> -->
@@ -12,18 +14,20 @@
                 <div class="signup-content">
                     <form  id="signup-form" class="signup-form">
                         <h2 class="form-title" data-i18n="createaccount">Create account</h2>
-                        <div class="form-group">
-                            <input type="text" class="form-input" name="buisiness" id="buisiness" placeholder=""/>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-input" name="fullname" id="fullname" placeholder=""/>
+                        <div class=" row">
+                            <div class="form-group col-6">
+                                <input type="text" class="form-input" name="BiusinessArabe" id="BiusinessArabe" placeholder="Biusiness Arabe"/>
+                            </div>
+                            <div class="form-group col-6">
+                                <input type="text" class="form-input" name="BiusinessEnglish" id="BiusinessEnglish" placeholder="Biusiness English"/>
+                            </div>
                         </div>
                         <div class=" row">
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="country" id="country" placeholder=""/>
+                                <input type="text" class="form-input" name="FullNameArabe" id="FullNameArabe" placeholder="Full Name Arabe"/>
                             </div>
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="city" id="city" placeholder=""/>
+                                <input type="text" class="form-input" name="FullNameEnglish" id="FullNameEnglish" placeholder="Full Name English"/>
                             </div>
                         </div>
                         <div class=" row">
@@ -34,13 +38,21 @@
                                 <input type="number" class="form-input" name="phone" id="phone" placeholder="Phone"/>
                             </div>
                         </div>
+                        <div class=" row">
+                            <div class="form-group col-6">
+                                <input type="text" class="form-input" name="country" id="country" placeholder="country"/>
+                            </div>
+                            <div class="form-group col-6">
+                                <input type="text" class="form-input" name="city" id="city" placeholder="city"/>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="password" id="password" placeholder="" maxlength="14" minlength="7"/>
+                                <input type="text" class="form-input" name="password" id="password" placeholder="Password" maxlength="14" minlength="7"/>
                                 <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                             </div>
                             <div class="form-group col-6">
-                                <input type="password" class="form-input" name="re_password" id="re_password" placeholder="" minlength="7" maxlength="14" />
+                                <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat Password" minlength="7" maxlength="14" />
                             </div>
                         </div>
                         

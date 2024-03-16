@@ -1,12 +1,14 @@
 <div class="body">
-    <select id="navBar_btn" class=" btn  navBarBtn">
-        <option value="ar"  id="navBar_btn" class=" btn   navBarBtn" data-i18n="arabic">AR</option>
-        <option value="en" id="navBar_btn" class=" btn   navBarBtn" data-i18n="english">EN</option>
-    </select>
+    <div class="row flex-row" style="margin: 0px;">
+        
+        <div class="col " >
+            <button value="ar"  id="navBar_btn" [ngClass]="{'btnenSmall': selectedLanguage === 'en'}" [ngClass]="{'btnarSmall': selectedLanguage === 'ar'}" class=" btn    navBarBtnlang" data-i18n="arabic" (click)="switchLanguage()">{{selectedLanguage=='en'?'AR':'EN'}}</button>
+        </div>
+    </div>
     
     <div class="main">
     
-        <section class="signup">
+        <section class="signup" style="padding-bottom: 50px;">
             <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
                 <div class="signup-content">
@@ -14,12 +16,12 @@
                         <h2 class="form-title" data-i18n="createaccount">Create account</h2>
                     
                             <div class="form-group">
-                                <input type="email" class="form-input" name="email" id="email" placeholder="Email"/>
+                                <input type="email" class="form-input" name="email" id="email" placeholder="Email / Phone"/>
                             </div>
                 
                         
                             <div class="form-group">
-                                <input type="text" class="form-input" name="password" id="password" placeholder="" maxlength="14" minlength="7"/>
+                                <input type="text" class="form-input" name="password" id="password" placeholder="Password" maxlength="14" minlength="7"/>
                                 <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                             </div>
                         

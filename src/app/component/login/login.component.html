@@ -1,0 +1,43 @@
+<div class="body">
+    <select id="navBar_btn" class=" btn  navBarBtn">
+        <option value="ar"  id="navBar_btn" class=" btn   navBarBtn" data-i18n="arabic">AR</option>
+        <option value="en" id="navBar_btn" class=" btn   navBarBtn" data-i18n="english">EN</option>
+    </select>
+    
+    <div class="main">
+    
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form  id="signup-form" class="signup-form">
+                        <h2 class="form-title" data-i18n="createaccount">Create account</h2>
+                    
+                            <div class="form-group">
+                                <input type="email" class="form-input" name="email" id="email" placeholder="Email"/>
+                            </div>
+                
+                        
+                            <div class="form-group">
+                                <input type="text" class="form-input" name="password" id="password" placeholder="" maxlength="14" minlength="7"/>
+                                <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                            </div>
+                        
+                    
+                        
+                        <div class="form-group">
+                            <button type="button"   class=" form-submit"  onclick="logFormData()" data-i18n="signup">Sign In </button>
+                        </div>
+    
+                       
+                    </form>
+                    <p class="loginhere" >
+                        <span data-i18n="haveAccount">Don't Have an account ? </span><a routerLink="/signup" class="loginhere-link" data-i18n="login">Sign Up</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    
+    </div>
+    
+</div>

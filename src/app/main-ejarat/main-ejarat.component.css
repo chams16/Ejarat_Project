@@ -1,0 +1,14 @@
+@import "~aos/dist/aos.css";
+@media (max-width: 575px) {
+    .btnenSmall {
+        margin-left: 10px; /* Adjust this value as needed */
+    }
+    .btnarSmall {
+        margin-right: 10px; /* Adjust this value as needed */
+    }
+    
+}
+
+.navbar-toggler-icon{
+    color: #00FFAD;
+}

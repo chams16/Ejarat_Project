@@ -1,1 +1,221 @@
 /* You can add global styles to this file, and also import other style files */
+.rtl {
+    direction: rtl;
+  }
+
+  /********** common setting **********/
+
+.navItems{
+    margin-left: 15%;
+}
+.topHeaderRow{
+    margin: 0;
+}
+
+
+.Logo_style{
+    height: 119px;
+    width: 112px;
+    margin-left: 20px;
+}
+
+h2 {
+    font-size: 2.8rem !important;
+    font-weight: 700;
+}
+#titlePos{
+    margin-top: 15px;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a,
+button {
+    cursor: pointer;
+}
+
+.jumbotron {
+    margin-bottom: 0 !important;
+}
+
+.atlas-cta {
+    border-radius: 22px !important;
+    padding: 12px 30px !important;
+    font-weight: 700;
+    transition: .3s ease-in-out !important;
+
+}
+.navBtn {
+    border-radius: 22px !important;
+    padding: 12px 30px !important;
+    font-weight: 700;
+    transition: .3s ease-in-out !important;
+
+}
+
+.topnavBtn {
+    border-radius: 22px !important;
+    padding: 12px 30px !important;
+    font-weight: 700;
+    transition: .3s ease-in-out !important;
+
+}
+.navBarBtntop{
+    margin-top: 10%;
+}
+.navBarBtntoplang{
+    margin-top: 10%;
+}
+#navBar_btn:hover{
+    color: #ffffff;
+    background: #00e69c;
+}
+#navBar_btn{
+    color: #ffffff;
+    background: black;
+    border-radius: 16px;
+  border: 2px solid #00ffad;
+}
+
+#green_btn{
+    color: #ffffff;
+    background: #00e69c;
+}
+#nav_btn:hover{
+    color: #ffffff;
+    background: #00e69c;
+}
+#nav_btn{
+    color: #ffffff;
+    border-color: #797979;
+    border-width: 2px;
+}
+
+
+.atlas-cta-wide {
+    width: 100%;
+}
+
+
+#blue_btn:hover {
+    color: #ffffff;
+    background: #121a2e;
+}
+
+#blue_btn{
+    background: #192440;
+    color: #ffffff;
+}
+
+#cta-ghost {
+    border: 2px solid #192440 !important;
+    color: #192440;
+}
+
+#cta-ghost:hover {
+    color: #ffffff;
+    background: #121a2e;
+}
+
+#banner {
+    background-size: cover;
+}
+
+/********** banner **********/
+#banner header {
+    overflow: hidden;
+}
+
+#banner header img {
+    max-width: 80px;
+}
+
+/********** feature (skew background) **********/
+.feature img {
+    width: 100%;
+    max-width: 480px;
+}
+
+.featureFirst {
+    background: linear-gradient(168deg, #ffffff 55%, #00FFAD 0);
+}
+
+#lastFeatureColor {
+    background: #00FFAD;
+}
+
+/********** price table **********/
+#price-table {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+}
+
+#price-table__premium {
+    background: #192440;
+    color: #ffffff;
+}
+
+#price-table ul li {
+    padding: 5px 0;
+}
+
+/********** contact **********/
+#contact {
+    background-size: cover;
+}
+
+#contact ul li {
+    padding: 3px 0;
+}
+
+#contact form {
+    color: #00FFAD;
+}
+#title{
+    color: #00FFAD;
+}
+
+#formborder{
+    border-color: #00FFAD;
+    background-color: transparent;
+}
+
+#contact form input,
+#contact form textarea {
+    background: transparent;
+    border: 1px solid #00FFAD;
+    color: #ffffff;
+}
+
+/********** copyright **********/
+#copyright {
+    background: #192440;
+    padding: 2rem 3rem;
+}
+
+#copyright #social-media a {
+    width: 40px;
+    height: 40px;
+    border-radius: 99%;
+    background: #ffffff;
+    transition: .4s ease;
+}
+
+#copyright #social-media a i {
+    color: #192440;
+    font-size: 1.2rem;
+    line-height: 40px;
+}
+
+#copyright #social-media a:hover {
+    background: #00FFAD;
+}
+
+#copyright #social-media a:hover i {
+    color: #ffffff;
+}
+
+/********** RWD **********/

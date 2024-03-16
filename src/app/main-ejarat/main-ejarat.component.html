@@ -1,0 +1,305 @@
+<div [ngClass]="{'rtl': selectedLanguage === 'ar'}">
+    <!-- banner -->
+    
+    <div class="jumbotron jumbotron-fluid" id="banner" style="background-image: url(assets/img/banner-bk.jpg);">
+        
+        <div class="row flex-row mb-3" style="margin: 0px;">
+            <div class="col-9">
+                <img src="assets/img/Ejarat_Logo.png" alt="logo" class="Logo_style">
+            </div>
+            <div class="col " >
+                <li routerLink="/login" id="navBar_btn" class=" btn   navBarBtntop" data-i18n="login">{{getTranslation('LOGIN')}}</li>
+                <button value="ar"  id="navBar_btn" [ngClass]="{'btnenSmall': selectedLanguage === 'en'}" [ngClass]="{'btnarSmall': selectedLanguage === 'ar'}" class=" btn    navBarBtntoplang" data-i18n="arabic" (click)="switchLanguage()">{{selectedLanguage=='en'?'AR':'EN'}}</button>
+            </div>
+        </div>
+         
+         <div id="home" class="container text-center text-md-left contentbox">
+  
+                     
+                        <!-- <nav class="row flex-row col navbar navbar-expand-lg ">
+                     
+                               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                 <span class="navbar-toggler-icon"></span>
+                               </button>
+                               <div class="collapse navbar-collapse navBarBtn " id="navbarNav">
+                                     <ul class="navbar-nav" style="margin-left: 15%;">
+                                         <li><a href="#aboutUs" id="nav_btn" class=" ms-5 btn me-4 navBtn" data-i18n="feature">{{getTranslation('FEATURE')}}</a></li>
+                                         <li><a href="#pricing"  id="nav_btn" class=" btn me-4 navBtn" data-i18n="pricing">{{getTranslation('PRICING')}}</a></li>
+                                         <li><a href="#contactUs" id="nav_btn" class=" btn me-4 navBtn" data-i18n="contact">{{getTranslation('CONTACT')}}</a></li>
+                                         <li><a href="#faq" id="nav_btn" class=" btn me-4  navBtn" data-i18n="faq">{{getTranslation('FAQ')}}</a></li>
+                                         <li><a href="#" id="nav_btn" class=" btn mr-3 navBtn" data-i18n="join">{{getTranslation('JOIN')}}</a></li>
+                                     </ul>
+                              </div>
+                             
+                         </nav>-->
+                         <nav class="navbar navbar-expand-lg navbar-light">
+                            <div class="container-fluid">
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border-color:#00FFAD ;  border-width: 3px;">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0" [ngClass]="{'enNav':selectedLanguage=='ar'}">
+                                        <li><a href="#aboutUs" id="nav_btn" class="btn me-4 navBtn nav-item" aria-current="page">{{getTranslation('FEATURE')}}</a></li>
+                                        <li><a href="#pricing" id="nav_btn" class="btn me-4 navBtn nav-item" aria-current="page">{{getTranslation('PRICING')}}</a></li>
+                                        <li><a href="#contactUs" id="nav_btn" class="btn me-4 navBtn nav-item" aria-current="page">{{getTranslation('CONTACT')}}</a></li>
+                                        <li><a href="#faq" id="nav_btn" class="btn me-4 navBtn nav-item" aria-current="page">{{getTranslation('FAQ')}}</a></li>
+                                        <li><a routerLink="/signup" id="nav_btn" class="btn mr-3 navBtn nav-item" aria-current="page" style="margin-right: 20px;">{{getTranslation('JOIN')}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+     
+             <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true" class="display-3 text-white font-weight-bold my-5 smallHead" data-i18n="head">
+                {{getTranslation('HEAD')}}
+             </h1>
+             <p data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true" class="lead text-white my-4" data-i18n="description">
+                {{getTranslation('DESCRIPTION')}}
+                
+             </p>
+             <a href="#" id="green_btn" data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true" class=" btn my-4 font-weight-bold atlas-cta" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">{{getTranslation('STARTBTN')}}</a>
+         </div>
+     </div>
+
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{getTranslation('REQUESTDEMO')}}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="myform" (ngSubmit)="submitDemoForm(myDemoForm)" #myDemoForm="ngForm">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="name" id="title" data-i18n="name" name="name"  style="color: black; ">{{getTranslation('NAME')}}</label>
+                            <input type="text"  class="form-control" id="name" name="name" ngModel required style="background-color: white; color: black; border-color: black;">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="phone" id="title" data-i18n="your_phone" name="phone"  style="color: black; ">{{getTranslation('YOURPHONE')}}</label>
+                            <input placeholder="+xxx-xxx-xxx-xxx" maxlength="10" max="10" min="8" minlength="8" class="form-control" type="text" id="phonenum" name="phone" ngModel required style="background-color: white; color: black; border-color: black;">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" id="title" data-i18n="message" name="email"  style="color: black; ">{{getTranslation('MAILREQ')}}</label>
+                        <input type="email" class="form-control" id="message" ngModel name="email" style="background-color: white; color: black; border-color: black;">
+                    </div>
+                    <button  type="submit" class="btn font-weight-bold atlas-cta atlas-cta-wide my-3" id="green_btn" [disabled]="!myDemoForm.valid">{{getTranslation('DEMOREQ')}}</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <!-- three-blcok -->
+     <div id="aboutUs" class="container my-5 py-2">
+         <h2 class="text-center font-weight-bold my-5" data-i18n="main_feature">{{getTranslation('MAINFEATURE')}}</h2>
+         <div class="row">
+             <div data-aos="fade-up" data-aos-delay="0" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center">
+                 <img src="assets/img/smart-protect-1.jpg" alt="Anti-spam" class="mx-auto">
+                 <h4 data-i18n="access">{{getTranslation('ACCESS')}}</h4>
+                 <p data-i18n="access_content">{{getTranslation('ACCESSCONTENT')}}</p>
+             </div>
+             <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center">
+                 <img src="assets/img/smart-protect-2.jpg" alt="Phishing Detect" class="mx-auto">
+                 <h4 data-i18n="cost">{{getTranslation('COST')}}</h4>
+                 <p data-i18n="cost_content">{{getTranslation('COSTCONTENT')}}</p>
+             </div>
+             <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center">
+                 <img src="assets/img/smart-protect-3.jpg" alt="Smart Scan" class="mx-auto">
+                 <h4 data-i18n="vat">{{getTranslation('VAT')}}</h4>
+                 <p data-i18n="vat_content">{{getTranslation('VATCONTENT')}}</p>
+             </div>
+         </div>
+     </div>
+     <!-- feature (skew background) -->
+     <div id="features" class="jumbotron jumbotron-fluid feature featureFirst" id="featursFirst">
+         <div class="container ">
+             <div class="row justify-content-between text-center text-md-left">
+                 <div data-aos="fade-right" data-aos-duration="1000" data-aos-once="true" class="col-md-6">
+                     <h2 class="font-weight-bold" data-i18n="use">{{getTranslation('USE')}}</h2>
+                     <p class="my-4" data-i18n="use_description">{{getTranslation('USEDESCRIPTION')}}</p>
+                     <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-blue" data-i18n="more_btn" id="blue_btn">{{getTranslation('MOREBTN')}}</a>
+                 </div>
+                 <div data-aos="fade-left" data-aos-duration="1000" data-aos-once="true" class="col-md-6 align-self-center">
+                     <img src="assets/img/feature-1.png" alt="Take a look inside" class="mx-auto d-block">
+                 </div>
+             </div>
+         </div>
+     </div>
+     <!-- feature (green background) -->
+     <div id="green_block" class="jumbotron jumbotron-fluid feature" id="feature-last" style="background: #00ffad;">
+         <div class="container">
+             <div class="row justify-content-between text-center text-md-left">
+                 <div data-aos="fade-left" data-aos-duration="1000" data-aos-once="true" class="col-md-6 flex-md-last">
+                     <h2 class="font-weight-bold" data-i18n="safity">{{getTranslation('SAFITY')}}</h2>
+                     <p class="my-4" data-i18n="safity_description">
+                        {{getTranslation('SAFITYDESCRIPTION')}}
+                     </p>
+                     <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-blue" data-i18n="more_btn" id="blue_btn">{{getTranslation('MOREBTN')}}</a>
+                 </div>
+                 <div data-aos="fade-right" data-aos-duration="1000" data-aos-once="true" class="col-md-6 align-self-center flex-md-first">
+                     <img src="assets/img/feature-2.png" alt="Safe and reliable" class="mx-auto d-block">
+                 </div>
+             </div>
+         </div>
+     </div>
+ 
+     <!-- price table -->
+     <div id="pricing" class="container  pt-3 pb-3" id="price-table">
+         <h2 class="text-center font-weight-bold d-block mb-3" data-i18n="price">{{getTranslation('PRICE')}}</h2>
+         <div class="row">
+             <div data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center py-4 mt-5">
+                 <h4 class="my-4" >{{getTranslation('STARTUP')}}</h4>
+                 <p class="font-weight-bold">$ <span class="display-2 font-weight-bold" id="price">{{basePrice}}</span><span id="duree"></span></p>
+                 <ul class="list-unstyled">
+                     <li >{{getTranslation('DOC1')}}</li>
+                     <li >{{getTranslation('DOC3')}}</li>
+                     <li >{{getTranslation('TEAM5')}}</li>
+                     <li data-i18n="limited">{{getTranslation('LIMITED')}}</li>
+                 </ul>
+                 <a href="#" class="btn my-4 font-weight-bold atlas-cta" id="cta-ghost" data-i18n="free">{{getTranslation('FREE')}}</a>
+             </div>
+             <div data-aos="fade-up" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center py-4 mt-5 rounded" id="price-table__premium">
+                 <h4 class="my-4" data-i18n="premuim">{{getTranslation('PREMUIM')}}</h4>
+                 <p class="font-weight-bold">$ <span class="display-2 font-weight-bold" id="price1">{{premPrice}}</span> <span id="duree1"></span></p>
+                 <ul class="list-unstyled">
+                     <li data-i18n="doc15">{{getTranslation('DOC15')}}</li>
+                     <li data-i18n="doc10">{{getTranslation('DOC10')}}</li>
+                     <li data-i18n="team25">{{getTranslation('TEAM25')}}</li>
+                     <li data-i18n="limited">{{getTranslation('LIMITED')}}</li>
+                 </ul>
+                 <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-green" id="green_btn" data-i18n="free">{{getTranslation('FREE')}}</a>
+             </div>
+             <div data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center py-4 mt-5">
+                 <h4 class="my-4" data-i18n="professional">{{getTranslation('PRO')}}</h4>
+                 <p class="font-weight-bold">$ <span class="display-2 font-weight-bold" id="price3">{{proPrice}}</span> <span id="duree2"></span></p>
+                 <ul class="list-unstyled">
+                     <li data-i18n="unDoc">{{getTranslation('UNDOC')}}</li>
+                     <li data-i18n="unRev">{{getTranslation('UNREV')}}</li>
+                     <li data-i18n="unMem">{{getTranslation('UNMEM')}}</li>
+                     <li data-i18n="unlimited">{{getTranslation('UNLIMITED')}}</li>
+                 </ul>
+                 <a href="#" class="btn my-4 font-weight-bold atlas-cta " id="cta-ghost" data-i18n="free">{{getTranslation('FREE')}}</a>
+             </div>
+         </div>
+     </div>
+
+      <!-- contact -->
+      <div id="contactUs" class="jumbotron jumbotron-fluid" id="contact" style="background-image: url(assets/img/contact-bk.jpg);">
+        <div class="container">
+            <div class="row justify-content-between pt-5 pb-5">
+                <div class="col-md-6 text-white">
+                    <h2 class="font-weight-bold" data-i18n="contact">{{getTranslation('CONTACTUS')}}</h2>
+                    <p class="my-4" data-i18n="contact_desc">
+                       {{getTranslation('CONTACTDESC')}}
+                    </p>
+                    <ul class="list-unstyled">
+                        <li data-i18n="mail">{{getTranslation('MAIL')}}</li>
+                        <li data-i18n="phone">{{getTranslation('PHONE')}}</li>
+                        <li data-i18n="address">{{getTranslation('ADRESS')}}</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <form id="myform" (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="name" id="title" data-i18n="name" name="name" >{{getTranslation('NAME')}}</label>
+                                <input type="text" class="form-control" id="name" name="name" ngModel required style="background-color: white; color: black; border-color: #00FFAD;">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="phone" id="title" data-i18n="your_phone" name="phone" >{{getTranslation('YOURPHONE')}}</label>
+                                <input  class="form-control" type="text" id="phonenum" name="phone" ngModel required style="background-color: white; color: black; border-color: #00FFAD;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" id="title" data-i18n="message" name="message" >{{getTranslation('MESSAGE')}}</label>
+                            <textarea type="text" class="form-control" id="message" rows="3" ngModel required name="message" style="background-color: white; color: black; border-color: #00FFAD;"></textarea>
+                        </div>
+                        <button  type="submit" class="btn font-weight-bold atlas-cta atlas-cta-wide my-3" id="green_btn" [disabled]="!myForm.valid">{{getTranslation('SUBMITBTN')}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!--FAQ-->
+     <div div id="green_block"   style="background: #00ffad;">
+         <section id="faq" class="container  py-2" id="faqSection">
+             <h2 class="text-center font-weight-bold d-block mb-3 mt-3" data-i18n="faq">{{getTranslation('FAQ')}}</h2>
+             <div class="row mb-5">
+                 <div class="col">
+                    <div class="accordion" id="accordionExample" *ngFor="let item of datafaq; let i = index">
+                        <div class="accordion-item" >
+                          <h2 class="accordion-header" >
+                            <button style="background-color: white; color: black;" class="accordion-button" type="button" (click)="setActiveAccordionItemIndex(i)" [attr.aria-expanded]="activeAccordionItemIndex === i" [attr.aria-controls]="'collapse' + i">
+                              {{item.queAr}}
+                            </button>
+                          </h2>
+                          <div style="background-color: rgb(239, 233, 233); color: black;"  [id]="'collapse' + i" class="accordion-collapse collapse" [ngClass]="{'show': activeAccordionItemIndex === i}" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                              {{item.ansAr}}
+                            </div>
+                          </div>
+                        </div>
+                        <!-- More accordion items -->
+                      </div>
+                    </div>
+             </div>
+         </section>
+         
+     
+     <!-- client -->
+     <!-- <div class="jumbotron jumbotron-fluid">
+         <div class="container">
+             <div class="row">
+                 <div class="col-sm-4 col-md-2 py-2 align-self-center">
+                     <img src="assets/img/client-1.png" class="mx-auto d-block">
+                 </div>
+                 <div class="col-sm-4 col-md-2 py-2 align-self-center">
+                     <img src="assets/img/client-2.png" class="mx-auto d-block">
+                 </div>
+                 <div class="col-sm-4 col-md-2 py-2 align-self-center">
+                     <img src="assets/img/client-3.png" class="mx-auto d-block">
+                 </div>
+                 <div class="col-sm-4 col-md-2 py-2 align-self-center">
+                     <img src="assets/img/client-4.png" class="mx-auto d-block">
+                 </div>
+                 <div class="col-sm-4 col-md-2 py-2 align-self-center">
+                     <img src="assets/img/client-5.png" class="mx-auto d-block">
+                 </div>
+                 <div class="col-sm-4 col-md-2 py-2 align-self-center">
+                     <img src="assets/img/client-6.png" class="mx-auto d-block">
+                 </div>
+             </div>
+         </div>
+     </div> -->
+    
+ 
+     <!-- copyright -->
+     <div class="jumbotron jumbotron-fluid" id="copyright">
+         <div class="container">
+             <div class="row justify-content-between">
+                 <div class="col-md-6 text-white align-self-center text-center text-md-left my-2">
+                     Copyright © EjaratPro 2024.
+                 </div>
+                 <div class="col-md-6 align-self-center text-center text-md-right my-2" id="social-media">
+                     <a href="#" class="d-inline-block text-center ml-2">
+                         <i class="fa fa-facebook" aria-hidden="true"></i>
+                     </a>
+                     <a href="#" class="d-inline-block text-center ml-2">
+                         <i class="fa fa-twitter" aria-hidden="true"></i>
+                     </a>
+                     <a href="#" class="d-inline-block text-center ml-2">
+                         <i class="fa fa-medium" aria-hidden="true"></i>
+                     </a>
+                     <a href="#" class="d-inline-block text-center ml-2">
+                         <i class="fa fa-linkedin" aria-hidden="true"></i>
+                     </a>
+                 </div>
+             </div>
+         </div>
+     </div>
+</div>
+     
+ 
+    

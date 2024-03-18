@@ -1,0 +1,19 @@
+#copyright2{
+    background: #192440;
+    padding: 10px 3rem;
+}
+
+
+#copyright2 #social-media a {
+    width: 40px;
+    height: 40px;
+    border-radius: 99%;
+    background: #ffffff;
+    transition: .4s ease;
+}
+
+#copyright2 #social-media a i {
+    color: #192440;
+    font-size: 1.2rem;
+    line-height: 40px;
+}

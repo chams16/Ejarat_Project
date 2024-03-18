@@ -13,62 +13,62 @@
             <div class="container">
                 <div class="signup-content">
                     <form  id="signup-form" class="signup-form">
-                        <h2 class="form-title" data-i18n="createaccount">Create account</h2>
+                        <h2 class="form-title" data-i18n="createaccount">{{getTranslation('CREATACCOUNT')}}</h2>
                         <div class=" row">
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="BiusinessArabe" id="BiusinessArabe" placeholder="Biusiness Arabe"/>
+                                <input type="text" class="form-input" name="BiusinessArabe" id="BiusinessArabe" [placeholder]="getBARPlaceHolder()"/>
                             </div>
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="BiusinessEnglish" id="BiusinessEnglish" placeholder="Biusiness English"/>
+                                <input type="text" class="form-input" name="BiusinessEnglish" id="BiusinessEnglish" [placeholder]="getBENPlaceHolder()"/>
                             </div>
                         </div>
                         <div class=" row">
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="FullNameArabe" id="FullNameArabe" placeholder="Full Name Arabe"/>
+                                <input type="text" class="form-input" name="FullNameArabe" id="FullNameArabe" [placeholder]="getFullARPlaceHolder()"/>
                             </div>
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="FullNameEnglish" id="FullNameEnglish" placeholder="Full Name English"/>
-                            </div>
-                        </div>
-                        <div class=" row">
-                            <div class="form-group col-6">
-                                <input type="email" class="form-input" name="email" id="email" placeholder="Email"/>
-                            </div>
-                            <div class="form-group col-6">
-                                <input type="number" class="form-input" name="phone" id="phone" placeholder="Phone"/>
+                                <input type="text" class="form-input" name="FullNameEnglish" id="FullNameEnglish" [placeholder]="getFullENPlaceHolder()"/>
                             </div>
                         </div>
                         <div class=" row">
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="country" id="country" placeholder="country"/>
+                                <input type="email" class="form-input" name="email" id="email" [placeholder]="getEmailPlaceHolder()"/>
                             </div>
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="city" id="city" placeholder="city"/>
+                                <input type="number" class="form-input" name="phone" id="phone" [placeholder]="getPhonePlaceHolder()"/>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class="form-group col-6">
+                                <input type="text" class="form-input" name="country" id="country" [placeholder]="getCountryPlaceHolder()"/>
+                            </div>
+                            <div class="form-group col-6">
+                                <input type="text" class="form-input" name="city" id="city" [placeholder]="getCityPlaceHolder()"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="password" id="password" placeholder="Password" maxlength="14" minlength="7"/>
+                                <input type="text" class="form-input" name="password" id="password" [placeholder]="getPasswordPlaceHolder()" maxlength="14" minlength="7"/>
                                 <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                             </div>
                             <div class="form-group col-6">
-                                <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat Password" minlength="7" maxlength="14" />
+                                <input type="password" class="form-input" name="re_password" id="re_password" [placeholder]="getRePasswordPlaceHolder()" minlength="7" maxlength="14" />
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <input type="checkbox" name="agree-term" id="agree-term" class=""/>
-                            <label for="agree-term" class="label-agree-term " data-i18n="terms"><a a href="#" class="term-service" data-bs-toggle="modal" data-bs-target="#exampleModal"> I agree all statements in Terms of service</a></label>
+                            <label for="agree-term" class="label-agree-term " data-i18n="terms"><a a href="#" class="term-service" data-bs-toggle="modal" data-bs-target="#exampleModal">{{getTranslation('IAGREE')}}</a></label>
                         </div>
                         
                         <div class="form-group">
-                            <button type="button"   class=" form-submit"  onclick="logFormData()" data-i18n="signup">Sign up </button>
+                            <button type="button"   class=" form-submit"  onclick="logFormData()" data-i18n="signup">{{getTranslation('SIGNUP')}}</button>
                         </div>
     
                        
                     </form>
                     <p class="loginhere" >
-                        <span data-i18n="haveAccount">Have already an account ? </span><a routerLink="/login" class="loginhere-link" data-i18n="login">Login here</a>
+                        <span data-i18n="haveAccount">{{getTranslation('HAVEACCOUNT')}} </span><a routerLink="/login" class="loginhere-link" data-i18n="login">{{getTranslation('LOGIN')}}</a>
                     </p>
                 </div>
             </div>

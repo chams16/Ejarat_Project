@@ -12,6 +12,12 @@ import { SignupComponent } from './component/signup/signup.component';
 import { LoginComponent } from './component/login/login.component';
 import { ROUTES, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { SideBarComponent } from './component/cPanel/side-bar/side-bar.component';
+import { NavbarComponent } from './component/cPanel/navbar/navbar.component';
+import { FooterComponent } from './component/cPanel/footer/footer.component';
+import { CpanelComponent } from './component/cPanel/cpanel/cpanel.component';
+import { UnitComponent } from './component/cPanel/unit/unit.component';
+import { MaintenanceRequestComponent } from './component/cPanel/maintenance-request/maintenance-request.component';
 
 export function HTTPLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http);
@@ -22,7 +28,13 @@ export function HTTPLoaderFactory(http:HttpClient){
     AppComponent,
     MainEjaratComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    SideBarComponent,
+    NavbarComponent,
+    FooterComponent,
+    CpanelComponent,
+    UnitComponent,
+    MaintenanceRequestComponent
   ],
   imports: [
     BrowserModule,

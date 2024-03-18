@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ContactService } from 'src/app/services/contact.service';
 import { DataService } from 'src/app/services/data.service';
@@ -9,7 +9,7 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   selectedLanguage:any
 
@@ -18,8 +18,13 @@ export class LoginComponent {
 
 
   constructor(private translate:TranslateService, private data:DataService, private http:HttpClient, private contactService:ContactService,private elementRef: ElementRef){
-    translate.setDefaultLang('en')
+    //translate.setDefaultLang('en')
 
+  }
+
+  ngOnInit(){
+    this.loadTranslations('en');
+    this.loadTranslations('ar');
   }
 
   switchLanguage(){
@@ -28,12 +33,12 @@ export class LoginComponent {
     this.translate.use('ar')
     }else {
       this.selectedLanguage='en'
-    this.translate.use('en')
+      this.translate.use('en')
     }
   }
 
   loadTranslations(language: string): void {
-    const translationFileUrl = `/assets/i18n/${language}.json`;
+    const translationFileUrl = `../assets/i18n/${language}.json`;
     this.http.get<any>(translationFileUrl).subscribe(translations => {
       this.translations[language] = translations;
     });
@@ -50,6 +55,14 @@ export class LoginComponent {
       return this.translations['en']?.[key] || key;
     }
     return this.translations['ar']?.[key] || key;
+  }
+
+  getPlaceholderText(): string {
+    return this.getTranslation('PASSWORD');
+  }
+
+  getEmailPlaceholderText(){
+    return this.getTranslation('EMAIL_PHONE');
   }
 
 }

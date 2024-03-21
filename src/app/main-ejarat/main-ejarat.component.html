@@ -63,28 +63,44 @@
          </div>
      </div>
 
-     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" #myModal>
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">{{getTranslation('REQUESTDEMO')}}</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div [ngClass]="{'success-class': success, 'error-class': !success}">
+                {{DemoResponse}}
+            </div>
             <div class="modal-body">
                 <form id="myform" (ngSubmit)="submitDemoForm(myDemoForm)" #myDemoForm="ngForm">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="name" id="title" data-i18n="name" name="name"  style="color: black; font-weight: bold; ">{{getTranslation('NAME')}}</label>
-                            <input type="text"  class="form-control" id="name" name="name" ngModel required style="background-color: white; color: black; border-color: black;">
+                            <label for="fullName" id="title" data-i18n="name" name="fullName"  style="color: black; font-weight: bold; ">{{getTranslation('NAME')}}</label>
+                            <input type="text" minlength="3" class="form-control" id="name" name="fullName" #fullName="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
+                            <div *ngIf="fullName.touched && fullName.invalid" class="text-danger">
+                                <div *ngIf="fullName.errors?.['required']">Name is required</div>
+                                <div *ngIf="fullName.errors?.['minLength']">Name must be at least 3 characters</div>
+                              </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phone" id="title" data-i18n="your_phone" name="phone"  style="color: black; font-weight: bold;">{{getTranslation('YOURPHONE')}}</label>
-                            <input placeholder="+xxx-xxx-xxx-xxx" maxlength="10" max="10" min="8" minlength="8" class="form-control" type="text" id="phonenum" name="phone" ngModel required style="background-color: white; color: black; border-color: black;">
+                            <input placeholder="+xxx-xxx-xxx-xxx" maxlength="10" max="10" min="8" minlength="8" #phone="ngModel" class="form-control" type="text" id="phonenum" name="phone" ngModel required style="background-color: white; color: black; border-color: black;">
+                            <div *ngIf="phone.touched && phone.invalid" class="text-danger">
+                                <div *ngIf="phone.errors?.['required']">Phone number is required</div>
+                                <div *ngIf="phone.errors?.['pattern']">Phone number must be 10 digits</div>
+                              </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="message" id="title" data-i18n="message" name="email"  style="color: black; font-weight: bold;">{{getTranslation('MAILREQ')}}</label>
-                        <input type="email" class="form-control" id="message" ngModel name="email" style="background-color: white; color: black; border-color: black;">
+                        <input type="email" class="form-control" #email="ngModel" id="message" ngModel name="email" style="background-color: white; color: black; border-color: black;">
+                        <div *ngIf="email.touched && email.invalid" class="text-danger">
+                            <div *ngIf="email.errors?.['required']">Email is required</div>
+                            <div *ngIf="email.errors?.['email']">Invalid email format</div>
+                          </div>
+
                     </div>
                     <button  type="submit" class="btn font-weight-bold atlas-cta atlas-cta-wide my-3" id="green_btn" [disabled]="!myDemoForm.valid" style="font-weight: bold;">{{getTranslation('DEMOREQ')}}</button>
                 </form>
@@ -207,16 +223,27 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="name" id="title" data-i18n="name" name="name"style="font-weight: bold;" >{{getTranslation('NAME')}}</label>
-                                <input type="text" class="form-control" id="name" name="name" ngModel required style="background-color: white; color: black; border-color: #00FFAD;">
+                                <input type="text" class="form-control" id="fullName" name="fullName" #fullName="ngModel" ngModel required style="background-color: white; color: black; border-color: #00FFAD;">
+                                <div *ngIf="fullName.touched && fullName.invalid" class="text-danger">
+                                    <div *ngIf="fullName.errors?.['required']">Name is required</div>
+                                    <div *ngIf="fullName.errors?.['minLength']">Name must be at least 3 characters</div>
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="phone" id="title" data-i18n="your_phone" name="phone" style="font-weight: bold;">{{getTranslation('YOURPHONE')}}</label>
-                                <input  class="form-control" type="text" id="phonenum" name="phone" ngModel required style="background-color: white; color: black; border-color: #00FFAD;">
+                                <input  class="form-control" type="text" id="phonenum" name="phone" #phone="ngModel" ngModel required style="background-color: white; color: black; border-color: #00FFAD;">
+                                <div *ngIf="phone.touched && phone.invalid" class="text-danger">
+                                    <div *ngIf="phone.errors?.['required']">Phone number is required</div>
+                                    <div *ngIf="phone.errors?.['pattern']">Phone number must be 10 digits</div>
+                                  </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="message" id="title" data-i18n="message" name="message" style="font-weight: bold;">{{getTranslation('MESSAGE')}}</label>
-                            <textarea type="text" class="form-control" id="message" rows="3" ngModel required name="message" style="background-color: white; color: black; border-color: #00FFAD;"></textarea>
+                            <textarea type="text" class="form-control" id="message" rows="3" ngModel required #message="ngModel" name="message" style="background-color: white; color: black; border-color: #00FFAD;"></textarea>
+                            <div *ngIf="message.touched && message.errors?.['required']" class="text-danger">
+                                Message is required
+                              </div>
                         </div>
                         <button  type="submit" class="btn font-weight-bold atlas-cta atlas-cta-wide my-3" id="green_btn" [disabled]="!myForm.valid" style="font-weight: bold;">{{getTranslation('SUBMITBTN')}}</button>
                     </form>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { DataService } from '../services/data.service';
 import { HttpClient } from '@angular/common/http';
@@ -6,7 +6,11 @@ import { NgForm } from '@angular/forms';
 import * as AOS from 'aos';
 
 
+
+
 import { ContactService } from '../services/contact.service';
+import { ToastrService } from 'ngx-toastr';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-main-ejarat',
@@ -19,6 +23,8 @@ export class MainEjaratComponent implements OnInit{
   basePrice=0
   proPrice=0
   premPrice=0
+  DemoResponse:string=''
+  success!:boolean
 
   activeAccordionItemIndex: number | null = null;
 
@@ -34,7 +40,7 @@ export class MainEjaratComponent implements OnInit{
 
   private translations: { [key: string]: { [key: string]: string } } = {};
 
-  constructor(private translate:TranslateService, private data:DataService, private http:HttpClient, private contactService:ContactService,private elementRef: ElementRef){
+  constructor(private translate:TranslateService, private data:DataService, private http:HttpClient, private contactService:ContactService,private elementRef: ElementRef, private toastr:ToastrService){
     translate.setDefaultLang('en')
     this.fetchdata()
 
@@ -54,6 +60,7 @@ export class MainEjaratComponent implements OnInit{
       this.loadTranslations('en');
     this.loadTranslations('ar');
     this.fetchdata()
+
   }
 
   scrollToElement(part:any): void {
@@ -162,7 +169,10 @@ export class MainEjaratComponent implements OnInit{
     }
   }
 
+
+
   submitDemoForm(myDemoForm:NgForm){
+
     if (myDemoForm.valid) {
       const formData = {
         guestName:myDemoForm.value.name,
@@ -173,15 +183,24 @@ export class MainEjaratComponent implements OnInit{
         response => {
           console.log('Form submission successful:', response);
           // Optionally, reset the form after successful submission
-          const modalElement = this.elementRef.nativeElement.querySelector('#exampleModal');
-          modalElement.modal('hide');
+         
+          console.log("test");
+          myDemoForm.reset()
+          this.success = true
+          this.DemoResponse = 'Demo Request submitted successfully!'
+          
+          
         },
         error => {
           console.error('Form submission failed:', error);
           // Handle error
+          this.success = false
+          this.DemoResponse = "Oops ther's an error try again"
         }
       );
     }
   }
+
+  
 
 }

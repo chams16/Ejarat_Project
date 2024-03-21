@@ -15,57 +15,63 @@
             <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
                 <div class="signup-content">
-                    <form  id="signup-form" class="signup-form">
+                    <form  id="signup-form" class="signup-form" (ngSubmit)="signup(signupForm.value)" #signupForm="ngForm">
                         <h2 class="form-title" data-i18n="createaccount">{{getTranslation('CREATACCOUNT')}}</h2>
                         <div class=" row">
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="BiusinessArabe" id="BiusinessArabe" [placeholder]="getBARPlaceHolder()"/>
+                                <input type="text" #biusinessArabe="ngModel" class="form-input" name="BiusinessArabe" ngModel required id="BiusinessArabe" [placeholder]="getBARPlaceHolder()"/>
+                                <div *ngIf="biusinessArabe.touched && biusinessArabe.invalid" class="text-danger">
+                                    <div *ngIf="biusinessArabe.errors?.['required']">Email is required</div>
+                                  </div>
                             </div>
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="BiusinessEnglish" id="BiusinessEnglish" [placeholder]="getBENPlaceHolder()"/>
-                            </div>
-                        </div>
-                        <div class=" row">
-                            <div class="form-group col-6">
-                                <input type="text" class="form-input" name="FullNameArabe" id="FullNameArabe" [placeholder]="getFullARPlaceHolder()"/>
-                            </div>
-                            <div class="form-group col-6">
-                                <input type="text" class="form-input" name="FullNameEnglish" id="FullNameEnglish" [placeholder]="getFullENPlaceHolder()"/>
+                                <input type="text" class="form-input" #BiusinessEnglish="ngModel" name="BiusinessEnglish" ngModel required id="BiusinessEnglish" [placeholder]="getBENPlaceHolder()"/>
+                                <div *ngIf="BiusinessEnglish.touched && BiusinessEnglish.invalid" class="text-danger">
+                                    <div *ngIf="BiusinessEnglish.errors?.['required']">Email is required</div>
+                                  </div>
                             </div>
                         </div>
                         <div class=" row">
                             <div class="form-group col-6">
-                                <input type="email" class="form-input" name="email" id="email" [placeholder]="getEmailPlaceHolder()"/>
+                                <input type="text" class="form-input" name="FullNameArabe" ngModel required id="FullNameArabe" [placeholder]="getFullARPlaceHolder()"/>
                             </div>
                             <div class="form-group col-6">
-                                <input type="number" class="form-input" name="phone" id="phone" [placeholder]="getPhonePlaceHolder()"/>
+                                <input type="text" class="form-input" name="FullNameEnglish" ngModel required id="FullNameEnglish" [placeholder]="getFullENPlaceHolder()"/>
                             </div>
                         </div>
                         <div class=" row">
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="country" id="country" [placeholder]="getCountryPlaceHolder()"/>
+                                <input type="email" class="form-input" name="email" id="email" ngModel required [placeholder]="getEmailPlaceHolder()"/>
                             </div>
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="city" id="city" [placeholder]="getCityPlaceHolder()"/>
+                                <input type="number" class="form-input" name="phone" id="phone" ngModel required [placeholder]="getPhonePlaceHolder()"/>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class="form-group col-6">
+                                <input type="text" class="form-input" name="country" id="country" ngModel required [placeholder]="getCountryPlaceHolder()"/>
+                            </div>
+                            <div class="form-group col-6">
+                                <input type="text" class="form-input" name="city" id="city" ngModel required [placeholder]="getCityPlaceHolder()"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" name="password" id="password" [placeholder]="getPasswordPlaceHolder()" maxlength="14" minlength="7"/>
+                                <input type="text" class="form-input" name="password" ngModel required id="password" [placeholder]="getPasswordPlaceHolder()" maxlength="14" minlength="7"/>
                                 <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                             </div>
                             <div class="form-group col-6">
-                                <input type="password" class="form-input" name="re_password" id="re_password" [placeholder]="getRePasswordPlaceHolder()" minlength="7" maxlength="14" />
+                                <input type="password" class="form-input" ngModel required name="re_password" id="re_password" [placeholder]="getRePasswordPlaceHolder()" minlength="7" maxlength="14" />
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class=""/>
+                            <input type="checkbox" ngModel  name="agree-term" id="agree-term" class=""/>
                             <label for="agree-term" class="label-agree-term " data-i18n="terms"><a a href="#" class="term-service" data-bs-toggle="modal" data-bs-target="#exampleModal">{{getTranslation('IAGREE')}}</a></label>
                         </div>
                         
                         <div class="form-group">
-                            <button type="button"   class=" form-submit"  onclick="logFormData()" data-i18n="signup">{{getTranslation('SIGNUP')}}</button>
+                            <button type="submit"   class=" form-submit"  data-i18n="signup">{{getTranslation('SIGNUP')}}</button>
                         </div>
     
                        

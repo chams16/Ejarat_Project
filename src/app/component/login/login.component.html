@@ -15,23 +15,29 @@
                 <!-- <img src="images/signup-bg.jpg" alt=""> -->
                 <div class="container">
                     <div class="signup-content">
-                        <form  id="signup-form" class="signup-form">
-                            <h2 class="form-title" data-i18n="createaccount">{{getTranslation('LOGIN')}}</h2>
+                        <form  id="signup-form" class="signup-form" (ngSubmit)="login(loginForm.value)" #loginForm="ngForm">
+                            <h2 class="form-title">{{getTranslation('LOGIN')}}</h2>
                         
                                 <div class="form-group">
-                                    <input type="email" class="form-input" name="email" id="email"  [placeholder]="getEmailPlaceholderText()"/>
+                                    <input type="text" class="form-input form-control" name="loginInput" id="loginInput" #loginInput="ngModel" ngModel required  [placeholder]="getEmailPlaceholderText()"/>
+                                    <div class="alert" *ngIf="loginInput.invalid && (loginInput.dirty || loginInput.touched)">
+                                        <div *ngIf="loginInput.errors?.['required']">loginInput is required.</div>
+                                    </div>
                                 </div>
                     
                             
                                 <div class="form-group">
-                                    <input type="text" class="form-input" name="password" id="password" [placeholder]="getPlaceholderText()" maxlength="14" minlength="7"/>
+                                    <input type="password" class="form-input form-control" name="password" #password="ngModel" ngModel required id="password" [placeholder]="getPlaceholderText()" maxlength="14" minlength="7"/>
                                     <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                                    <div class="alert" *ngIf="password.invalid && (password.dirty || password.touched)">
+                                        <div *ngIf="password.errors?.['required']">password is required.</div>
+                                    </div>
                                 </div>
                             
                         
                             
                             <div class="form-group">
-                                <button type="button"   class=" form-submit"  onclick="logFormData()" data-i18n="signup">{{getTranslation('LOGIN')}} </button>
+                                <button type="submit"   class=" form-submit"  data-i18n="signup">{{getTranslation('LOGIN')}} </button>
                             </div>
         
                            

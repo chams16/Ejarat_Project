@@ -3,6 +3,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 import { AppComponent } from './app.component';
 import { MainEjaratComponent } from './main-ejarat/main-ejarat.component';
@@ -41,6 +45,8 @@ export function HTTPLoaderFactory(http:HttpClient){
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,

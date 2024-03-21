@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { ContactService } from 'src/app/services/contact.service';
 import { DataService } from 'src/app/services/data.service';
 
@@ -17,7 +18,7 @@ export class SignupComponent implements OnInit{
   private translations: { [key: string]: { [key: string]: string } } = {};
 
 
-  constructor(private translate:TranslateService, private data:DataService, private http:HttpClient, private contactService:ContactService,private elementRef: ElementRef){
+  constructor(private translate:TranslateService, private data:DataService, private http:HttpClient, private contactService:ContactService,private elementRef: ElementRef, private service:AuthService){
     translate.setDefaultLang('en')
 
   }
@@ -25,6 +26,19 @@ export class SignupComponent implements OnInit{
   ngOnInit(){
     this.loadTranslations('en');
     this.loadTranslations('ar');
+  }
+
+  signup(userData: any): void {
+    console.log(userData);
+    
+    this.service.signup(userData)
+      .subscribe(response => {
+        console.log('Signup successful:', response);
+        // Handle successful signup
+      }, error => {
+        console.error('Signup failed:', error);
+        // Handle signup error
+      });
   }
 
   switchLanguage(){

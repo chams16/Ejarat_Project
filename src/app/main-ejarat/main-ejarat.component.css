@@ -12,3 +12,22 @@
 .navbar-toggler-icon{
     color: #00FFAD;
 }
+
+.success-class{
+    background-color: rgb(11, 193, 11);
+    color: white;
+    position: relative;
+    font-size: 25px;
+    font-weight: bold;
+    align-items: center;
+    padding-left: 15%;
+}
+.error-class{
+    background-color: red;
+    color: white;
+    position: relative;
+    font-size: 25px;
+    font-weight: bold;
+    align-items: center;
+    padding-left: 15%;
+}

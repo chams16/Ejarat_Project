@@ -55,6 +55,13 @@ export class MainEjaratComponent implements OnInit{
     this.loadTranslations('ar');
     this.fetchdata()
   }
+
+  scrollToElement(part:any): void {
+    const element = document.getElementById(part);    
+    if (element) {      
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
  
 
   updateTranslation(key: string, value: string, language: string): void {

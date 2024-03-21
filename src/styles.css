@@ -63,17 +63,23 @@ button {
     transition: .3s ease-in-out !important;
 
 }
-.navBarBtntop{
-    margin-top: 10%;
-}
-.navBarBtntoplang{
-    margin-top: 10%;
-}
+
 #navBar_btn:hover{
     color: #ffffff;
     background: #00e69c;
 }
 #navBar_btn{
+    color: #ffffff;
+    background: black;
+    border-radius: 16px;
+  border: 2px solid #00ffad;
+}
+
+#navBar_btncancel:hover{
+    color: #ffffff;
+    background: red;
+}
+#navBar_btncancel{
     color: #ffffff;
     background: black;
     border-radius: 16px;
@@ -90,8 +96,9 @@ button {
 }
 #nav_btn{
     color: #ffffff;
-    border-color: #797979;
-    border-width: 2px;
+    background: black;
+    border-radius: 16px;
+  border: 2px solid #00ffad;
 }
 
 

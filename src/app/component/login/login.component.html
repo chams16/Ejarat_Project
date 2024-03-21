@@ -1,45 +1,48 @@
-<div class="body">
-    <div class="row flex-row mb-2" style="margin: 0px;">
-        
-        <div class="col " >
-            <button value="ar"  id="navBar_btn" [ngClass]="{'btnenSmall': selectedLanguage === 'en'}" [ngClass]="{'btnarSmall': selectedLanguage === 'ar'}" class=" btn    navBarBtnlang" data-i18n="arabic" (click)="switchLanguage()">{{selectedLanguage=='en'?'AR':'EN'}}</button>
-        </div>
-    </div>
-    
-    <div class="main">
-    
-        <section class="signup" style="padding-bottom: 50px;">
-            <!-- <img src="images/signup-bg.jpg" alt=""> -->
-            <div class="container">
-                <div class="signup-content">
-                    <form  id="signup-form" class="signup-form">
-                        <h2 class="form-title" data-i18n="createaccount">{{getTranslation('LOGIN')}}</h2>
-                    
-                            <div class="form-group">
-                                <input type="email" class="form-input" name="email" id="email"  [placeholder]="getEmailPlaceholderText()"/>
-                            </div>
-                
-                        
-                            <div class="form-group">
-                                <input type="text" class="form-input" name="password" id="password" [placeholder]="getPlaceholderText()" maxlength="14" minlength="7"/>
-                                <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
-                            </div>
-                        
-                    
-                        
-                        <div class="form-group">
-                            <button type="button"   class=" form-submit"  onclick="logFormData()" data-i18n="signup">{{getTranslation('LOGIN')}} </button>
-                        </div>
-    
-                       
-                    </form>
-                    <p class="loginhere" >
-                        <span data-i18n="haveAccount">{{getTranslation('DONTHAVEACCOUNT')}} </span><a routerLink="/signup" class="loginhere-link" data-i18n="login">{{getTranslation('SIGNUP')}}</a>
-                    </p>
-                </div>
+    <div class="body" [ngClass]="{'rtl': selectedLanguage === 'ar'}">
+        <div class="row flex-row mb-2" style="margin: 0px;">
+            
+            <div class="col mr-auto" >
+                <button value="ar"  id="navBar_btn" [ngClass]="{'btnenSmall': selectedLanguage === 'en'}" [ngClass]="{'btnarSmall': selectedLanguage === 'ar'}" class=" btn    navBarBtnlang" data-i18n="arabic" (click)="switchLanguage()">{{selectedLanguage=='en'?'AR':'EN'}}</button>
             </div>
-        </section>
-    
+            <div class="col-auto align-self-end" >
+                <li type="button" routerLink=""  id="navBar_btncancel" class=" btn  navBarBtnlang">Cancel</li>
+            </div>
+        </div>
+        
+        <div class="main">
+        
+            <section class="signup" style="padding-bottom: 50px;">
+                <!-- <img src="images/signup-bg.jpg" alt=""> -->
+                <div class="container">
+                    <div class="signup-content">
+                        <form  id="signup-form" class="signup-form">
+                            <h2 class="form-title" data-i18n="createaccount">{{getTranslation('LOGIN')}}</h2>
+                        
+                                <div class="form-group">
+                                    <input type="email" class="form-input" name="email" id="email"  [placeholder]="getEmailPlaceholderText()"/>
+                                </div>
+                    
+                            
+                                <div class="form-group">
+                                    <input type="text" class="form-input" name="password" id="password" [placeholder]="getPlaceholderText()" maxlength="14" minlength="7"/>
+                                    <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                                </div>
+                            
+                        
+                            
+                            <div class="form-group">
+                                <button type="button"   class=" form-submit"  onclick="logFormData()" data-i18n="signup">{{getTranslation('LOGIN')}} </button>
+                            </div>
+        
+                           
+                        </form>
+                        <p class="loginhere" >
+                            <span data-i18n="haveAccount">{{getTranslation('DONTHAVEACCOUNT')}} </span><a routerLink="/signup" class="loginhere-link" data-i18n="login">{{getTranslation('SIGNUP')}}</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        
+        </div>
+        
     </div>
-    
-</div>

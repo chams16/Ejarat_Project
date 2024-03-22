@@ -8,7 +8,7 @@ import { UnitComponent } from './component/cPanel/unit/unit.component';
 import { MaintenanceRequestComponent } from './component/cPanel/maintenance-request/maintenance-request.component';
 
 const routes: Routes = [
-    { path: 'home', component: MainEjaratComponent },
+    { path: '', component: MainEjaratComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },

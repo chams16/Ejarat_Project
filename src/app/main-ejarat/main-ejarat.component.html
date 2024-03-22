@@ -1,6 +1,7 @@
 <div [ngClass]="{'rtl': selectedLanguage === 'ar'}">
     <!-- banner -->
     
+    
     <div class="jumbotron jumbotron-fluid" id="banner" style="background-image: url(assets/img/bg.jpg);">
         
         <div class="row flex-row mb-3" style="margin: 0px;">
@@ -166,41 +167,23 @@
      <!-- price table -->
      <div class="container  pt-3 pb-3" id="price-table">
          <h2 class="text-center font-weight-bold d-block mb-3" data-i18n="price">{{getTranslation('PRICE')}}</h2>
-         <div class="row">
-             <div data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center py-4 mt-5">
-                 <h4 class="my-4" >{{getTranslation('STARTUP')}}</h4>
-                 <p class="font-weight-bold">$ <span class="display-2 font-weight-bold" id="price">{{basePrice}}</span><span id="duree"></span></p>
-                 <ul class="list-unstyled">
-                     <li >{{getTranslation('DOC1')}}</li>
-                     <li >{{getTranslation('DOC3')}}</li>
-                     <li >{{getTranslation('TEAM5')}}</li>
-                     <li data-i18n="limited">{{getTranslation('LIMITED')}}</li>
-                 </ul>
-                 <a href="#" class="btn my-4 font-weight-bold atlas-cta" id="cta-ghost" data-i18n="free" style="font-weight: bold;">{{getTranslation('FREE')}}</a>
+         <div class="row"  >
+             <div data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true" class="col-md-4 col-4 text-center py-4 mt-5" *ngFor="let price of datapricing; let i=index" [ngClass]="i === 1 ? 'price-table__premium' : ''">
+                 <h4 class="my-4" >{{price.nameEn}}</h4>
+                 <p class="font-weight-bold">$ <span class="display-2 font-weight-bold" id="price">{{price.cost}}</span><span id="duree"></span></p>
+                 <div *ngIf="selectedLanguage === 'en'; else arSubItems" >
+                    <ul class="list-unstyled" *ngFor="let subItem of price.descriptionEn">
+                        <li >{{subItem}}</li> <!-- Display English subItem name -->
+                    </ul>
+                  </div>
+                  <ng-template #arSubItems>
+                    <ul class="list-unstyled" *ngFor="let subItem of price.descriptionAr">
+                        <li >{{subItem}}</li> <!-- Display Arabic subItem name -->
+                    </ul>
+                  </ng-template>
+                 <a href="#" class="btn my-4 font-weight-bold atlas-cta " id="" data-i18n="free" style="font-weight: bold;" [attr.id]="i === 1 ? 'mibtn' : 'cta-ghost'">{{getTranslation('FREE')}}</a>
              </div>
-             <div data-aos="fade-up" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center py-4 mt-5 rounded" id="price-table__premium">
-                 <h4 class="my-4" data-i18n="premuim">{{getTranslation('PREMUIM')}}</h4>
-                 <p class="font-weight-bold">$ <span class="display-2 font-weight-bold" id="price1">{{premPrice}}</span> <span id="duree1"></span></p>
-                 <ul class="list-unstyled">
-                     <li data-i18n="doc15">{{getTranslation('DOC15')}}</li>
-                     <li data-i18n="doc10">{{getTranslation('DOC10')}}</li>
-                     <li data-i18n="team25">{{getTranslation('TEAM25')}}</li>
-                     <li data-i18n="limited">{{getTranslation('LIMITED')}}</li>
-                 </ul>
-                 <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-green" id="green_btn" data-i18n="free" style="font-weight: bold;">{{getTranslation('FREE')}}</a>
-             </div>
-             <div data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000" data-aos-once="true" class="col-md-4 text-center py-4 mt-5">
-                 <h4 class="my-4" data-i18n="professional">{{getTranslation('PRO')}}</h4>
-                 <p class="font-weight-bold">$ <span class="display-2 font-weight-bold" id="price3">{{proPrice}}</span> <span id="duree2"></span></p>
-                 <ul class="list-unstyled">
-                     <li data-i18n="unDoc">{{getTranslation('UNDOC')}}</li>
-                     <li data-i18n="unRev">{{getTranslation('UNREV')}}</li>
-                     <li data-i18n="unMem">{{getTranslation('UNMEM')}}</li>
-                     <li data-i18n="unlimited">{{getTranslation('UNLIMITED')}}</li>
-                 </ul>
-                 <a href="#" class="btn my-4 font-weight-bold atlas-cta " id="cta-ghost" data-i18n="free" style="font-weight: bold;">{{getTranslation('FREE')}}</a>
-             </div>
-         </div>
+            </div>
      </div>
 
       <!-- contact -->
@@ -222,7 +205,7 @@
                     <form id="myform" (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="name" id="title" data-i18n="name" name="name"style="font-weight: bold;" >{{getTranslation('NAME')}}</label>
+                                <label for="fullName" id="title" data-i18n="name" name="fullName"style="font-weight: bold;" >{{getTranslation('NAME')}}</label>
                                 <input type="text" class="form-control" id="fullName" name="fullName" #fullName="ngModel" ngModel required style="background-color: white; color: black; border-color: #00FFAD;">
                                 <div *ngIf="fullName.touched && fullName.invalid" class="text-danger">
                                     <div *ngIf="fullName.errors?.['required']">Name is required</div>
@@ -234,7 +217,7 @@
                                 <input  class="form-control" type="text" id="phonenum" name="phone" #phone="ngModel" ngModel required style="background-color: white; color: black; border-color: #00FFAD;">
                                 <div *ngIf="phone.touched && phone.invalid" class="text-danger">
                                     <div *ngIf="phone.errors?.['required']">Phone number is required</div>
-                                    <div *ngIf="phone.errors?.['pattern']">Phone number must be 10 digits</div>
+                                    <div *ngIf="phone.errors?.['minLength']">Phone number must be 10 digits</div>
                                   </div>
                             </div>
                         </div>

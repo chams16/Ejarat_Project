@@ -21,4 +21,10 @@ export class DataService {
     return this.http.get(url);
     
   }
+
+  fetchpackageData(lang: string){
+    const url = `${this.apipriceUrl}?lang=${lang}`;
+    return this.http.get(url);
+    
+  }
 }

@@ -4,9 +4,7 @@
             <div class="col mr-auto" >
                 <button value="ar"  id="navBar_btn" [ngClass]="{'btnenSmall': selectedLanguage === 'en'}" [ngClass]="{'btnarSmall': selectedLanguage === 'ar'}" class=" btn    navBarBtnlang" data-i18n="arabic" (click)="switchLanguage()">{{selectedLanguage=='en'?'AR':'EN'}}</button>
             </div>
-            <div class="col-auto align-self-end" >
-                <li type="button" routerLink=""  id="navBar_btncancel" class=" btn  navBarBtnlang">Cancel</li>
-            </div>
+            
         </div>
         
         <div class="main">
@@ -16,7 +14,9 @@
                 <div class="container">
                     <div class="signup-content">
                         <form  id="signup-form" class="signup-form" (ngSubmit)="login(loginForm.value)" #loginForm="ngForm">
-                            <h2 class="form-title">{{getTranslation('LOGIN')}}</h2>
+                            
+                            <h2 class="form-title">{{getTranslation('LOGIN')}} </h2>
+                                
                         
                                 <div class="form-group">
                                     <input type="text" class="form-input form-control" name="loginInput" id="loginInput" #loginInput="ngModel" ngModel required  [placeholder]="getEmailPlaceholderText()"/>
@@ -45,6 +45,7 @@
                         <p class="loginhere" >
                             <span data-i18n="haveAccount">{{getTranslation('DONTHAVEACCOUNT')}} </span><a routerLink="/signup" class="loginhere-link" data-i18n="login">{{getTranslation('SIGNUP')}}</a>
                         </p>
+                        <li type="button" routerLink=""  id="navBar_btncancel" class=" btn  navBarBtnlang">{{getTranslation('CANCEL')}}</li>
                     </div>
                 </div>
             </section>

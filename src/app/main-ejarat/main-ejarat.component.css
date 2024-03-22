@@ -31,3 +31,17 @@
     align-items: center;
     padding-left: 15%;
 }
+
+
+.fixed-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    z-index: 1000; /* Adjust the z-index as needed */
+  }
+  
+  .nav-wrapper {
+    transition: all 0.3s ease; /* Smooth transition for the fixed state */
+  }

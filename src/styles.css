@@ -64,6 +64,11 @@ button {
 
 }
 
+#mibtn{
+    color: #ffffff;
+    background: #00e69c;
+}
+
 #navBar_btn:hover{
     color: #ffffff;
     background: #00e69c;
@@ -160,7 +165,7 @@ button {
     padding-bottom: 4rem !important;
 }
 
-#price-table__premium {
+.price-table__premium {
     background: #192440;
     color: #ffffff;
 }

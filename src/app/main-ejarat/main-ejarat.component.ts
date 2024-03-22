@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { DataService } from '../services/data.service';
 import { HttpClient } from '@angular/common/http';
@@ -20,11 +20,16 @@ import { Modal } from 'bootstrap';
 export class MainEjaratComponent implements OnInit{
   selectedLanguage:any
   datafaq!:any[]
+  datapricing!:any[]
   basePrice=0
   proPrice=0
   premPrice=0
   DemoResponse:string=''
   success!:boolean
+
+
+
+  packageData:any=[]
 
   activeAccordionItemIndex: number | null = null;
 
@@ -42,7 +47,7 @@ export class MainEjaratComponent implements OnInit{
 
   constructor(private translate:TranslateService, private data:DataService, private http:HttpClient, private contactService:ContactService,private elementRef: ElementRef, private toastr:ToastrService){
     translate.setDefaultLang('en')
-    this.fetchdata()
+    this.fetchpackageData(this.selectedLanguage)
 
   }
 
@@ -57,11 +62,12 @@ export class MainEjaratComponent implements OnInit{
     AOS.init();
     this.switchLanguage()
       this.fetchfaqdata(this.selectedLanguage)
+      this.fetchpackageData(this.selectedLanguage)
       this.loadTranslations('en');
     this.loadTranslations('ar');
-    this.fetchdata()
 
   }
+
 
   scrollToElement(part:any): void {
     const element = document.getElementById(part);    
@@ -81,10 +87,12 @@ export class MainEjaratComponent implements OnInit{
     if(this.selectedLanguage=='en'){
       this.selectedLanguage='ar'
       this.fetchfaqdata('ar')
+      this.fetchpackageData('ar')
     this.translate.use('ar')
     }else {
       this.selectedLanguage='en'
       this.fetchfaqdata('en')
+      this.fetchpackageData('en')
     this.translate.use('en')
     }
   }
@@ -131,6 +139,14 @@ export class MainEjaratComponent implements OnInit{
       
       
       //translationFileUrl =response[0].descriptionAr[0]
+    })
+  }
+
+  fetchpackageData(lang:any){
+    this.data.fetchpackageData(lang).subscribe((response:any) => {
+      console.log(response);
+      
+      this.datapricing=response
     })
   }
 
@@ -198,6 +214,12 @@ export class MainEjaratComponent implements OnInit{
           this.DemoResponse = "Oops ther's an error try again"
         }
       );
+    }
+  }
+
+  fillpackageData(){
+    if(this.selectedLanguage=='en'){
+      
     }
   }
 

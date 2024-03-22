@@ -4,9 +4,7 @@
         <div class="col mr-auto" >
             <button value="ar"  id="navBar_btn" [ngClass]="{'btnenSmall': selectedLanguage === 'en'}" [ngClass]="{'btnarSmall': selectedLanguage === 'ar'}" class=" btn    navBarBtnlang" data-i18n="arabic" (click)="switchLanguage()">{{selectedLanguage=='en'?'AR':'EN'}}</button>
         </div>
-        <div class="col-auto align-self-end" >
-            <li type="button" routerLink=""  id="navBar_btncancel" class=" btn  navBarBtnlang">Cancel</li>
-        </div>
+        
     </div>
     
     <div class="main" style="padding-bottom: 50px;">
@@ -79,6 +77,7 @@
                     <p class="loginhere" >
                         <span data-i18n="haveAccount">{{getTranslation('HAVEACCOUNT')}} </span><a routerLink="/login" class="loginhere-link" data-i18n="login">{{getTranslation('LOGIN')}}</a>
                     </p>
+                    <li type="button" routerLink=""  id="navBar_btncancel" class=" btn  navBarBtnlang">{{getTranslation('CANCEL')}}</li>
                 </div>
             </div>
         </section>

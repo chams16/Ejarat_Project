@@ -29,6 +29,7 @@ export class MainEjaratComponent implements OnInit{
 
 
 
+
   packageData:any=[]
 
   activeAccordionItemIndex: number | null = null;
@@ -200,11 +201,11 @@ export class MainEjaratComponent implements OnInit{
           console.log('Form submission successful:', response);
           // Optionally, reset the form after successful submission
          
-          console.log("test");
           myDemoForm.reset()
           this.success = true
           this.DemoResponse = 'Demo Request submitted successfully!'
-          
+          myDemoForm.reset()
+          window.location.reload();
           
         },
         error => {
@@ -223,6 +224,6 @@ export class MainEjaratComponent implements OnInit{
     }
   }
 
-  
+ 
 
 }

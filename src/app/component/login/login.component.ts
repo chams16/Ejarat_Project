@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services/auth.service';
@@ -29,14 +30,17 @@ export class LoginComponent implements OnInit {
     this.loadTranslations('ar');
   }
 
-  login(credentials: any): void {
+  login(credentials: NgForm): void {
     console.log(credentials);
     
     this.service.login(credentials)
       .subscribe(response => {
         console.log('Login successful:');
+        console.log(response);
+        
         // Handle successful login
-        this.route.navigate(['/'])
+        credentials.reset
+        this.route.navigate(['/cpanel'])
       }, error => {
         console.error('Login failed:', error);
         // Handle login error

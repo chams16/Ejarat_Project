@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ContactService } from 'src/app/services/contact.service';
@@ -10,9 +11,18 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit{
+export class SignupComponent implements OnInit,OnChanges{
 
-  selectedLanguage:any
+  selectedLanguage:any='en'
+
+  areas: any[] = []; // Assuming you have a list of areas fetched from the backend
+  selectedArea: any
+  selectedCity: any; // Property to store the selected area ID
+  cities: any[] = [];
+  condition:any
+  agreeTerm:any
+  success:boolean=false
+  DemoResponse!:string
 
 
   private translations: { [key: string]: { [key: string]: string } } = {};
@@ -26,17 +36,64 @@ export class SignupComponent implements OnInit{
   ngOnInit(){
     this.loadTranslations('en');
     this.loadTranslations('ar');
+    this.fetchAreas(this.selectedLanguage);
+    this.fetchCondition(this.selectedLanguage)
+  }
+  ngOnChanges(){
+    this.fetchAreas(this.selectedLanguage)
   }
 
-  signup(userData: any): void {
+  fetchCondition(lang:any){
+    const apiconditionUrl = `http://164.90.138.198/api/app/terms?lang=${lang}`;
+    this.http.get<any[]>(apiconditionUrl)
+    .subscribe(response => {
+      this.condition = response;
+    });
+  }
+
+  fetchAreas(lang:any) {
+    // Make HTTP request to fetch list of areas from backend API
+    const apicitiesUrl = `http://164.90.138.198/api/app/cities?lang=${lang}`;
+    console.log(apicitiesUrl);
+    
+    
+    // Make HTTP request to fetch list of areas from backend API
+    this.http.get<any[]>(apicitiesUrl)
+      .subscribe(response => {
+        this.areas = response;
+      });
+  }
+
+  onAreaChange() {
+    console.log(this.selectedArea.id);
+    
+    const apiUrl = `http://164.90.138.198/api/app/zones?lang=${this.selectedLanguage}?id=${this.selectedArea.id}`;
+    // Fetch list of cities based on the selected area ID
+    this.http.get<any[]>(apiUrl)
+      .subscribe(cities => {
+        console.log(apiUrl);
+        
+        console.log(this.selectedArea);
+        
+        this.cities = cities;
+      });
+  }
+
+  signup(userData:NgForm): void {    
     console.log(userData);
     
     this.service.signup(userData)
       .subscribe(response => {
         console.log('Signup successful:', response);
+        userData.reset
+        this.success = true
+          this.DemoResponse = 'Registered successfully! you can login now'
         // Handle successful signup
       }, error => {
         console.error('Signup failed:', error);
+        userData.reset
+        this.success = true
+          this.DemoResponse = 'OOps! ther\'s an error try again'
         // Handle signup error
       });
   }
@@ -44,10 +101,14 @@ export class SignupComponent implements OnInit{
   switchLanguage(){
     if(this.selectedLanguage=='en'){
       this.selectedLanguage='ar'
-    this.translate.use('ar')
+      this.fetchCondition('ar')
+      this.fetchAreas('ar')
+      this.translate.use('ar')
     }else {
       this.selectedLanguage='en'
-    this.translate.use('en')
+      this.fetchCondition('en')
+      this.fetchAreas('en')
+      this.translate.use('en')
     }
   }
 

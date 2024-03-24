@@ -4,17 +4,17 @@
     
     <div class="jumbotron jumbotron-fluid" id="banner" style="background-image: url(assets/img/bg.jpg);">
         
-        <div class="row flex-row mb-3" style="margin: 0px;">
+        <div class="row flex-row mb-5 fixed-top mt-4" style="margin: 0px;">
             <div class="col">
                 <img src="assets/img/eLogo.png" alt="logo" class="Logo_style">
             </div>
             <div class="col-8">
-                <nav class="navbar navbar-expand-lg navbar-light">
+                <nav class="navbar navbar-expand-lg navbar-light ">
                     <div class="container-fluid">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border-color:#00FFAD ;  border-width: 3px;">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="f" aria-label="Toggle navigation" style="border-color:#00FFAD ;  border-width: 3px;">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="collapse navbar-collapse" id="navbar">
                             <ul class="navbar-nav mx-auto mb-2 mb-lg-0" [ngClass]="{'enNav':selectedLanguage=='ar'}">
                                 <li><a [routerLink]="" fragment="aboutUs" (click)="scrollToElement('aboutUs')" id="nav_btn" class="btn me-4 navBtn nav-item" aria-current="page" style="font-weight: bold;">{{getTranslation('FEATURE')}}</a></li>
                                 <li><a [routerLink]="" fragment="price-table" (click)="scrollToElement('price-table')" id="nav_btn" class="btn me-4 navBtn nav-item" aria-current="page" style="font-weight: bold;">{{getTranslation('PRICING')}}</a></li>
@@ -32,7 +32,7 @@
             </div>
         </div>
          
-         <div id="home" class="container text-center text-md-left contentbox">
+         <div id="home" class="container text-center text-md-left contentbox" style="margin-top: 140px;">
   
                      
                         <!-- <nav class="row flex-row col navbar navbar-expand-lg ">
@@ -53,7 +53,7 @@
                          </nav>-->
                          
      
-             <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true" class="display-3 text-white font-weight-bold my-5 smallHead" data-i18n="head" style="font-weight: bold;">
+             <h1 data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true" class="display-3 text-white font-weight-bold my-5 smallHead mt-5" data-i18n="head" style="font-weight: bold;">
                 {{getTranslation('HEAD')}}
              </h1>
              <p data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true" class="lead text-white my-4" data-i18n="description" style="font-weight: bold;">

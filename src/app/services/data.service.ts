@@ -9,6 +9,7 @@ export class DataService {
 
   private apipriceUrl = 'http://164.90.138.198/api/website/packages'; // Replace with your API endpoint
   private apifaqUrl = 'http://164.90.138.198/api/website/faq';
+  private apicityUrl ='http://164.90.138.198/api/app/cities'
 
   constructor(private http: HttpClient) { }
 
@@ -26,5 +27,10 @@ export class DataService {
     const url = `${this.apipriceUrl}?lang=${lang}`;
     return this.http.get(url);
     
+  }
+
+  fetchCities(lang: string){
+    const url = `${this.apicityUrl}?lang=${lang}`;    
+    return this.http.get(url);
   }
 }

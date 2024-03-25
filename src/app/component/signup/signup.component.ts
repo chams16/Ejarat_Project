@@ -97,7 +97,7 @@ export class SignupComponent implements OnInit,OnChanges{
   signup(): void {
     this.formData.city = this.selectedArea?.id    
     console.log(this.formData);
-      this.service.signup(this.formData)
+      this.service.signup(this.formData,this.selectedLanguage)
       .subscribe(response => {
         console.log('Signup successful:', response);
         if(response.message=="Successfully"){

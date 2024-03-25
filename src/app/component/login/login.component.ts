@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(credentials: NgForm): void {    
-
-      this.service.login(credentials)
+  
+      this.service.login(credentials,this.selectedLanguage)
       .subscribe(response => {
         console.log('Login successful:');
         console.log(response);

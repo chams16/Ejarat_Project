@@ -15,6 +15,10 @@ import { DataService } from 'src/app/services/data.service';
 export class LoginComponent implements OnInit {
 
   selectedLanguage:any
+  success:boolean=false
+  DemoResponse!:string
+  errorResponse!:string
+  error:boolean=false
 
 
   private translations: { [key: string]: { [key: string]: string } } = {};
@@ -30,21 +34,42 @@ export class LoginComponent implements OnInit {
     this.loadTranslations('ar');
   }
 
-  login(credentials: NgForm): void {
-    console.log(credentials);
-    
-    this.service.login(credentials)
+  login(credentials: NgForm): void {    
+
+      this.service.login(credentials)
       .subscribe(response => {
         console.log('Login successful:');
         console.log(response);
+        if(response.message){
+          this.error = true
+          this.errorResponse = response.message
+        }else if(response.token){
+            // put the token in the local storage 
+            
+            window.localStorage.setItem("token",response.token)
+        credentials.reset
+        this.success = true
+          this.error=false
+          this.errorResponse=''
+          this.DemoResponse = 'Welcome'
+          setTimeout(() => {
+            this.route.navigate(['/cpanel'])
+          }, 1000);
+        //this.route.navigate(['/cpanel'])
+        
+        }else{
+          this.success = false
+          this.DemoResponse = 'OOps! ther\'s an error try again'
+        }
         
         // Handle successful login
-        credentials.reset
-        this.route.navigate(['/cpanel'])
+        
       }, error => {
-        console.error('Login failed:', error);
+        this.success = false
+          this.DemoResponse = 'OOps! ther\'s an error try again'
         // Handle login error
       });
+    
   }
 
   switchLanguage(){

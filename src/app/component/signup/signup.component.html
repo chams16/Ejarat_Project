@@ -13,20 +13,23 @@
             <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
                 <div class="signup-content">
-                    <form  id="signup-form" class="signup-form" (ngSubmit)="signup(signupForm.value)" #signupForm="ngForm">
+                    <form  id="signup-form" class="signup-form" (ngSubmit)="signup()" #myForm="ngForm">
                         <h2 class="form-title" data-i18n="createaccount">{{getTranslation('CREATACCOUNT')}}</h2>
                         <div [ngClass]="{'success-class': success, 'error-class': !success}" >
                             {{DemoResponse}}
                         </div>
+                        <div class="validation-class" *ngIf="error" >
+                                <li>{{errorResponse}}</li>
+                        </div>
                         <div class=" row">
                             <div class="form-group col-6">
-                                <input type="text" #companyNameAr="ngModel" class="form-input" name="companyNameAr" ngModel required id="companyNameAr" [placeholder]="getBARPlaceHolder()"/>
+                                <input type="text" #companyNameAr="ngModel" [(ngModel)]="formData.companyNameAr" class="form-input" name="companyNameAr" ngModel required id="companyNameAr" [placeholder]="getBARPlaceHolder()"/>
                                 <div *ngIf="companyNameAr.touched && companyNameAr.invalid" class="text-danger">
                                     <div *ngIf="companyNameAr.errors?.['required']">Email is required</div>
                                   </div>
                             </div>
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" #companyNameEn="ngModel" name="companyNameEn" ngModel required id="companyNameEn" [placeholder]="getBENPlaceHolder()"/>
+                                <input [(ngModel)]="formData.companyNameEn" type="text" class="form-input" #companyNameEn="ngModel" name="companyNameEn" ngModel required id="companyNameEn" [placeholder]="getBENPlaceHolder()"/>
                                 <div *ngIf="companyNameEn.touched && companyNameEn.invalid" class="text-danger">
                                     <div *ngIf="companyNameEn.errors?.['required']">Email is required</div>
                                   </div>
@@ -34,37 +37,37 @@
                         </div>
                         <div class=" row">
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" #ownerNameAr="ngModel" name="ownerNameAr" ngModel required id="ownerNameAr" [placeholder]="getFullARPlaceHolder()"/>
+                                <input [(ngModel)]="formData.ownerNameAr" type="text" class="form-input" #ownerNameAr="ngModel" name="ownerNameAr" ngModel required id="ownerNameAr" [placeholder]="getFullARPlaceHolder()"/>
                             </div>
                             <div class="form-group col-6">
-                                <input type="text" class="form-input" #ownerNameEn="ngModel" name="ownerNameEn" ngModel required id="ownerNameEn" [placeholder]="getFullENPlaceHolder()"/>
-                            </div>
-                        </div>
-                        <div class=" row">
-                            <div class="form-group col-6">
-                                <input type="email" class="form-input" #ownerEmail="ngModel" name="ownerEmail" id="ownerEmail" ngModel required [placeholder]="getEmailPlaceHolder()"/>
-                            </div>
-                            <div class="form-group col-6">
-                                <input type="number" class="form-input" #ownerMobile="ngModel" name="ownerMobile" id="ownerMobile" ngModel required [placeholder]="getPhonePlaceHolder()"/>
+                                <input [(ngModel)]="formData.ownerNameEn" type="text" class="form-input" #ownerNameEn="ngModel" name="ownerNameEn" ngModel required id="ownerNameEn" [placeholder]="getFullENPlaceHolder()"/>
                             </div>
                         </div>
                         <div class=" row">
                             <div class="form-group col-6">
-                                <select class="form-select"   name="city" id="city" [(ngModel)]="selectedArea" (change)="onAreaChange()" required>
+                                <input [(ngModel)]="formData.ownerEmail" type="email" class="form-input" #ownerEmail="ngModel" name="ownerEmail" id="ownerEmail" ngModel required [placeholder]="getEmailPlaceHolder()"/>
+                            </div>
+                            <div class="form-group col-6">
+                                <input [(ngModel)]="formData.ownerMobile" type="number" class="form-input" #ownerMobile="ngModel" name="ownerMobile" id="ownerMobile" ngModel required [placeholder]="getPhonePlaceHolder()"/>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class="form-group col-6">
+                                <select class="form-select" [(ngModel)]="formData.city"  name="city" id="city" [(ngModel)]="selectedArea" (change)="onAreaChange()" required>
                                     <option value="">{{getCountryPlaceHolder()}}</option>
-                                    <option *ngFor="let area of areas" [ngValue]="area">{{ area.name }}</option>
+                                    <option *ngFor="let area of areas" [ngValue]="area" >{{ area.name }}</option>
                                 </select>
                             </div>
                             <div class="form-group col-6">
-                                <select class="form-select"  name="zone" id="zone" [(ngModel)]="selectedCity" required>
+                                <select class="form-select" [(ngModel)]="formData.zone"  name="zone" id="zone" [(ngModel)]="selectedCity" required>
                                     <option value="">{{getCityPlaceHolder()}}</option>
-                                    <option *ngFor="let city of cities" >{{ city.name }}</option>
+                                    <option *ngFor="let city of cities" [ngValue]="city.id">{{ city.name }}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col">
-                                <input type="password" class="form-input" #password="ngModel" minlength="7" maxlength="14"
+                                <input [(ngModel)]="formData.password" type="password" class="form-input" #password="ngModel" minlength="7" maxlength="14"
                                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,14}$" name="password" ngModel required id="password" [placeholder]="getPasswordPlaceHolder()" maxlength="14" minlength="7"/>
                                 <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                                 <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">

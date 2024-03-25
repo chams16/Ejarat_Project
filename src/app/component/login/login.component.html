@@ -16,22 +16,23 @@
                         <form  id="signup-form" class="signup-form" (ngSubmit)="login(loginForm.value)" #loginForm="ngForm">
                             
                             <h2 class="form-title">{{getTranslation('LOGIN')}} </h2>
-                                
+                            <div [ngClass]="{'success-class': success, 'error-class': !success}" >
+                                {{DemoResponse}}
+                            </div>
+                            <div class="validation-class" *ngIf="error" >
+                                    <li>{{errorResponse}}</li>
+                            </div>
                         
                                 <div class="form-group">
                                     <input type="text" class="form-input form-control" name="username" id="username" #username="ngModel" ngModel required  [placeholder]="getEmailPlaceholderText()"/>
-                                    <div class="alert" *ngIf="username.invalid && (username.dirty || username.touched)">
-                                        <div *ngIf="username.errors?.['required']">loginInput is required.</div>
-                                    </div>
+                                    
                                 </div>
                     
                             
                                 <div class="form-group">
                                     <input type="password" class="form-input form-control" name="password" #password="ngModel" ngModel required id="password" [placeholder]="getPlaceholderText()" maxlength="14" minlength="7"/>
                                     <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
-                                    <div class="alert" *ngIf="password.invalid && (password.dirty || password.touched)">
-                                        <div *ngIf="password.errors?.['required']">password is required.</div>
-                                    </div>
+                                    
                                 </div>
                             
                         

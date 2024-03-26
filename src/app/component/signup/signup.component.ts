@@ -105,7 +105,7 @@ export class SignupComponent implements OnInit,OnChanges{
           this.success = true
           this.error=false
           this.errorResponse=''
-          this.DemoResponse = 'Registered successfully! you can login now'
+          this.DemoResponse = this.getSuccessRegistered()
           setTimeout(() => {
             this.route.navigate(['/login'])
           }, 2000);
@@ -117,7 +117,7 @@ export class SignupComponent implements OnInit,OnChanges{
         // Handle successful signup
       }, error => {
         this.success = false
-          this.DemoResponse = 'OOps! ther\'s an error try again'
+          this.DemoResponse = this.getErrorRegistered()
         // Handle signup error
       });
     
@@ -160,6 +160,15 @@ export class SignupComponent implements OnInit,OnChanges{
   getBARPlaceHolder(){
     return this.getTranslation('BUISSNESSARABE')
   }
+
+  getSuccessRegistered(){
+    return this.getTranslation('SUCCESSREGISTERED')
+  }
+
+  getErrorRegistered(){
+    return this.getTranslation('ERRORREGISTERED')
+  }
+
   getBENPlaceHolder(){
     return this.getTranslation('BUISINESSENGLISH')
   }

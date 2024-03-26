@@ -14,7 +14,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class LoginComponent implements OnInit {
 
-  selectedLanguage:any
+  selectedLanguage:any='en'
   success:boolean=false
   DemoResponse!:string
   errorResponse!:string
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
   login(credentials: NgForm): void {    
   
-      this.service.login(credentials,this.lang)
+      this.service.login(credentials,this.selectedLanguage)
       .subscribe(response => {
         console.log('Login successful:');
         console.log(response);
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         this.success = true
           this.error=false
           this.errorResponse=''
-          this.DemoResponse = 'Welcome'
+          this.DemoResponse = this.getWelcomeMsg()
           setTimeout(() => {
             this.route.navigate(['/cpanel'])
           }, 1000);
@@ -61,14 +61,14 @@ export class LoginComponent implements OnInit {
         
         }else{
           this.success = false
-          this.DemoResponse = 'OOps! ther\'s an error try again'
+          this.DemoResponse = this.getErrorRegistered()
         }
         
         // Handle successful login
         
       }, error => {
         this.success = false
-          this.DemoResponse = 'OOps! ther\'s an error try again'
+          this.DemoResponse = this.getErrorRegistered()
         // Handle login error
       });
     
@@ -110,6 +110,14 @@ export class LoginComponent implements OnInit {
 
   getEmailPlaceholderText(){
     return this.getTranslation('EMAIL_PHONE');
+  }
+
+  getErrorRegistered(){
+    return this.getTranslation('ERRORREGISTERED')
+  }
+
+  getWelcomeMsg(){
+    return this.getTranslation('WELCOMEMSG')
   }
 
 }

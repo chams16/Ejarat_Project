@@ -1,4 +1,7 @@
 {
+    "WELCOMEMSG":"Welcome",
+    "SUCCESSREGISTERED":"Registered successfully! you can login now",
+    "ERRORREGISTERED":"OOps! ther's an error try again",
     "CANCEL":"Cancel",
     "BUISSNESSARABE":"Buisiness Arabe",
     "BUISINESSENGLISH":"Buisiness English",

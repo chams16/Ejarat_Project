@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   DemoResponse!:string
   errorResponse!:string
   error:boolean=false
+  lang:any
 
 
   private translations: { [key: string]: { [key: string]: string } } = {};
@@ -32,11 +33,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(){
     this.loadTranslations('en');
     this.loadTranslations('ar');
+    this.lang=this.selectedLanguage
   }
 
   login(credentials: NgForm): void {    
   
-      this.service.login(credentials,this.selectedLanguage)
+      this.service.login(credentials,this.lang)
       .subscribe(response => {
         console.log('Login successful:');
         console.log(response);

@@ -13,12 +13,17 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   signup(userData: any, lang:any): Observable<any> {
-    const apiUrlWithLang = `${this.apiLoginUrl}?lang=${lang}`;
+    const apiUrlWithLang = `${this.apisignUpUrl}?lang=${lang}`;
+    console.log(apiUrlWithLang);
+    
     return this.http.post<any>(apiUrlWithLang, userData);
   }
 
   login(credentials: any, lang:any): Observable<any> {
+    console.log(lang);
+    
     const apiUrlWithLang = `${this.apiLoginUrl}?lang=${lang}`;
+    console.log(apiUrlWithLang);
     return this.http.post<any>(apiUrlWithLang, credentials);
   }
 }

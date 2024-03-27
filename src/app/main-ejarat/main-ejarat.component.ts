@@ -11,6 +11,7 @@ import * as AOS from 'aos';
 import { ContactService } from '../services/contact.service';
 import { ToastrService } from 'ngx-toastr';
 import { Modal } from 'bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-ejarat',
@@ -44,12 +45,18 @@ export class MainEjaratComponent implements OnInit{
     }
   }
 
+  
+
   private translations: { [key: string]: { [key: string]: string } } = {};
 
-  constructor(private translate:TranslateService, private data:DataService, private http:HttpClient, private contactService:ContactService,private elementRef: ElementRef, private toastr:ToastrService){
+  constructor(private route:Router,private translate:TranslateService, private data:DataService, private http:HttpClient, private contactService:ContactService,private elementRef: ElementRef, private toastr:ToastrService){
     translate.setDefaultLang('en')
     this.fetchpackageData(this.selectedLanguage)
 
+  }
+
+  navigateSignUp(){
+    this.route.navigate(['/signup'])
   }
 
   loadTranslations(language: string): void {

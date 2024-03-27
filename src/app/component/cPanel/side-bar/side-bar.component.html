@@ -14,6 +14,7 @@
     
             <!-- Divider -->
             <hr class="sidebar-divider">
+
     
     
             <!-- Nav Item - Pages Collapse Menu -->
@@ -21,9 +22,9 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Proprety</span>
+                    <span>OWNERS & BUILDING</span>
                 </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" routerLink="/unit">Units</a>
                         <a class="collapse-item" href="cards.html">Tenants and Contracts</a>
@@ -31,6 +32,13 @@
                         <a class="collapse-item" href="cards.html">Terminated Contract</a>
                     </div>
                 </div>
+            </li>
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['',{ outlets: { sidebar: ['maintenance','maintenance'] } }]">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>CASH & CHEQUES MANAGEMENT</span></a>
             </li>
     
              <!-- Divider -->
@@ -41,7 +49,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Cash & Cheque Management</span>
+                    <span>REVENUE MODEL</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
@@ -84,7 +92,7 @@
             <div class="sidebar-heading">
                 Reports
             </div>
-    
+            <hr class="sidebar-divider">
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['',{ outlets: { sidebar: ['maintenance','maintenance'] } }]">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -128,8 +136,8 @@
 
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3 navbar-toggler"
-            type="button" data-bs-toggle="collapse" data-bs-target="#sidebarSupportedContent"
-             aria-controls="sidebarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            type="button" data-toggle="collapse" data-target="#sidebarSupportedContent"
+             aria-controls="sidebarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
 

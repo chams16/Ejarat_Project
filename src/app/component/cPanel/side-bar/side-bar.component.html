@@ -20,18 +20,18 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>OWNERS & BUILDING</span>
-                </a>
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" routerLink="/unit">Units</a>
-                        <a class="collapse-item" href="cards.html">Tenants and Contracts</a>
-                        <a class="collapse-item" href="cards.html">Owners & Buildings</a>
-                        <a class="collapse-item" href="cards.html">Terminated Contract</a>
-                    </div>
+                aria-expanded="false" aria-controls="collapseOne">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>OWNERS & BUILDING</span>
+                 </a>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingTwo">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" [routerLink]="[{ outlets: { sidebar: ['unit'] } }]">Units</a>
+                    <a class="collapse-item" routerLink="/tenants">Tenants and Contracts</a>
+                    <a class="collapse-item" routerLink="/owners">Owners & Buildings</a>
+                    <a class="collapse-item" routerLink="/terminated-contracts">Terminated Contracts</a>
                 </div>
+            </div>
             </li>
             <hr class="sidebar-divider">
 
@@ -47,18 +47,16 @@
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                   aria-expanded="false" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>REVENUE MODEL</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Revenue Model:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Credit Sales Invoice</a>
-                        <a class="collapse-item" href="utilities-border.html">Receipt voucher</a>
-                        <a class="collapse-item" href="utilities-animation.html">Credit Notes</a>
-                        <a class="collapse-item" href="utilities-other.html">Sales Invoice</a>
+                        <a class="collapse-item" href="#">Credit Sales Invoice</a>
+                        <a class="collapse-item" href="#">Receipt voucher</a>
+                        <a class="collapse-item" href="#">Credit Notes</a>
+                        <a class="collapse-item" href="#">Sales Invoice</a>
                     </div>
                 </div>
             </li>
@@ -68,16 +66,16 @@
     
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                   aria-expanded="false" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Purchases & Expenses</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Bills</a>
-                        <a class="collapse-item" href="cards.html">Payment Voucher</a>
-                        <a class="collapse-item" href="cards.html">Expenses </a>
-                        <a class="collapse-item" href="cards.html">Debit Note</a>
+                        <a class="collapse-item" href="#">Bills</a>
+                        <a class="collapse-item" href="#">Payment Voucher</a>
+                        <a class="collapse-item" href="#">Expenses </a>
+                        <a class="collapse-item" href="#">Debit Note</a>
                     </div>
                 </div>
             </li>
@@ -94,30 +92,27 @@
             </div>
             <hr class="sidebar-divider">
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['',{ outlets: { sidebar: ['maintenance','maintenance'] } }]">
+                <a class="nav-link" [routerLink]="[{ outlets: { sidebar: ['maintenace&request'] } }]">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Maintenance Request</span></a>
             </li>
     
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
+                   aria-expanded="false" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Buisiness Setup</span>
+                    <span>Business Setup</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        
-                        <a class="collapse-item" href="login.html">Users</a>
-                        <a class="collapse-item" href="register.html">Payment Method</a>
-                        <a class="collapse-item" href="forgot-password.html">Product & Services</a>
-                        
-                        <a class="collapse-item" href="404.html">Tax</a>
-                        <a class="collapse-item" href="blank.html">Contact</a>
+                        <a class="collapse-item" href="#">Users</a>
+                        <a class="collapse-item" href="#">Payment Method</a>
+                        <a class="collapse-item" href="#">Product & Services</a>
+                        <a class="collapse-item" href="#">Tax</a>
+                        <a class="collapse-item" href="#">Contact</a>
                     </div>
                 </div>
             </li>
-    
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
     
@@ -125,7 +120,7 @@
     
            
         </ul>
-<!-- End of Sidebar -->
+<!-- End of Sidebar -->   
 
 
 
@@ -335,10 +330,12 @@
             </ul>
 
         </nav>
+        <router-outlet name="sidebar"></router-outlet>
+        <h1>Test</h1>
     </div>
 
 
-
+    
 
 
 </div></div>

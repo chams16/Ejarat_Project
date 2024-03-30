@@ -12,9 +12,13 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'cpanel', component:CpanelComponent},
-  { path: 'unit', component: UnitComponent, outlet: "sidebar" },
-  { path: 'maintenance', component: MaintenanceRequestComponent, outlet: "sidebar" }
+  { path: 'cpanel', component:CpanelComponent,
+    children: [
+      { path: ':unit', component: UnitComponent, outlet: 'sidebar' },
+      { path: 'maintenace&request', component: MaintenanceRequestComponent, outlet: 'sidebar' }
+    ]
+}
+  
 ];
 
 @NgModule({

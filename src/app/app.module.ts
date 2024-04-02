@@ -22,6 +22,7 @@ import { FooterComponent } from './component/cPanel/footer/footer.component';
 import { CpanelComponent } from './component/cPanel/cpanel/cpanel.component';
 import { UnitComponent } from './component/cPanel/unit/unit.component';
 import { MaintenanceRequestComponent } from './component/cPanel/maintenance-request/maintenance-request.component';
+import { ChartAccountComponent } from './component/cPanel/chart-account/chart-account.component';
 
 export function HTTPLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http);
@@ -38,7 +39,8 @@ export function HTTPLoaderFactory(http:HttpClient){
     FooterComponent,
     CpanelComponent,
     UnitComponent,
-    MaintenanceRequestComponent
+    MaintenanceRequestComponent,
+    ChartAccountComponent
   ],
   imports: [
     BrowserModule,

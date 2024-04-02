@@ -22,7 +22,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                 aria-expanded="false" aria-controls="collapseOne">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>OWNERS & BUILDING</span>
+                <span>PROPERTY</span>
                  </a>
             <div id="collapseOne" class="collapse" aria-labelledby="headingTwo">
                 <div class="bg-white py-2 collapse-inner rounded">
@@ -79,17 +79,15 @@
                     </div>
                 </div>
             </li>
-    
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-    
-           
-            <!-- Nav Item - Pages Collapse Menu -->
+
     
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Reports
-            </div>
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="[{ outlets: { sidebar: ['maintenace&request'] } }]">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Reports</span></a>
+            </li>
             <hr class="sidebar-divider">
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="[{ outlets: { sidebar: ['maintenace&request'] } }]">
@@ -105,6 +103,7 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" [routerLink]="[{ outlets: { sidebar: ['COA'] } }]">Charts of Accounts</a>
                         <a class="collapse-item" href="#">Users</a>
                         <a class="collapse-item" href="#">Payment Method</a>
                         <a class="collapse-item" href="#">Product & Services</a>
@@ -331,7 +330,6 @@
 
         </nav>
         <router-outlet name="sidebar"></router-outlet>
-        <h1>Test</h1>
     </div>
 
 

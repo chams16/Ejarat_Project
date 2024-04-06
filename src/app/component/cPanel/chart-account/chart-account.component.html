@@ -58,48 +58,48 @@
         </div>
        
         <div class="modal-body">
-            <form id="myform" >
+            <form id="myform" (ngSubmit)="addAccount()">
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="fullName" id="title" data-i18n="name" name="fullName"  style="color: black; font-weight: bold; ">TitleAR</label>
-                        <input type="text" minlength="3" class="form-control" id="name" name="fullName" #fullName="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
-                        <div *ngIf="fullName.touched && fullName.invalid" class="text-danger">
-                            <div *ngIf="fullName.errors?.['required']">Title in Arabic is required</div>
-                            <div *ngIf="fullName.errors?.['minLength']">Title must be at least 3 characters</div>
+                        <label for="titleAr" id="title" data-i18n="titleAr" name="titleAr"  style="color: black; font-weight: bold; ">TitleAR</label>
+                        <input type="text" [(ngModel)]="accountData.titleAr" minlength="3" class="form-control" id="titleAr" name="titleAr" #titleAr="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
+                        <div *ngIf="titleAr.touched && titleAr.invalid" class="text-danger">
+                            <div *ngIf="titleAr.errors?.['required']">Title in Arabic is required</div>
+                            <div *ngIf="titleAr.errors?.['minLength']">Title must be at least 3 characters</div>
                           </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="fullName" id="title" data-i18n="name" name="fullName"  style="color: black; font-weight: bold; ">TitleEn</label>
-                        <input type="text" minlength="3" class="form-control" id="name" name="fullName" #fullName="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
-                        <div *ngIf="fullName.touched && fullName.invalid" class="text-danger">
-                            <div *ngIf="fullName.errors?.['required']">Title in English is required</div>
-                            <div *ngIf="fullName.errors?.['minLength']">Title must be at least 3 characters</div>
+                        <label for="titleEn" id="title" data-i18n="titleEn" name="titleEn"  style="color: black; font-weight: bold; ">TitleEn</label>
+                        <input type="text" minlength="3" [(ngModel)]="accountData.titleEn" class="form-control" id="titleEn" name="titleEn" #titleEn="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
+                        <div *ngIf="titleEn.touched && titleEn.invalid" class="text-danger">
+                            <div *ngIf="titleEn.errors?.['required']">Title in English is required</div>
+                            <div *ngIf="titleEn.errors?.['minLength']">Title must be at least 3 characters</div>
                           </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="fullName" id="title" data-i18n="name" name="fullName"  style="color: black; font-weight: bold; ">Account Code</label>
-                        <input type="text" minlength="3" class="form-control" id="name" name="fullName" #fullName="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
-                        <div *ngIf="fullName.touched && fullName.invalid" class="text-danger">
-                            <div *ngIf="fullName.errors?.['required']">Accoune Code is required</div>
-                            <div *ngIf="fullName.errors?.['minLength']">Account Code must be at least 3 characters</div>
+                        <label for="accountCode" id="title" data-i18n="accountCode" name="accountCode"  style="color: black; font-weight: bold; ">Account Code</label>
+                        <input type="text" [(ngModel)]="accountData.accountCode" name="accountCode" minlength="3" class="form-control" id="accountCode" #accountCode="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
+                        <div *ngIf="accountCode.touched && accountCode.invalid" class="text-danger">
+                            <div *ngIf="accountCode.errors?.['required']">Accoune Code is required</div>
+                            <div *ngIf="accountCode.errors?.['minLength']">Account Code must be at least 3 characters</div>
                           </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="fullName" id="title" data-i18n="name" name="fullName"  style="color: black; font-weight: bold; ">Parent Account ID</label>
-                        <input type="text" minlength="3" class="form-control" id="name" name="fullName" #fullName="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
-                        <div *ngIf="fullName.touched && fullName.invalid" class="text-danger">
-                            <div *ngIf="fullName.errors?.['required']">Parent Account is required</div>
-                            <div *ngIf="fullName.errors?.['minLength']">Parent Account must be at least 3 characters</div>
+                        <label for="parentAccountId" id="title" data-i18n="name" name="parentAccountId"  style="color: black; font-weight: bold; ">Parent Account ID</label>
+                        <input  [(ngModel)]="accountData.parentAccountId" type="text" minlength="3" class="form-control" id="parentAccountId" name="parentAccountId" #parentAccountId="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
+                        <div *ngIf="parentAccountId.touched && parentAccountId.invalid" class="text-danger">
+                            <div *ngIf="parentAccountId.errors?.['required']">Parent Account is required</div>
+                            <div *ngIf="parentAccountId.errors?.['minLength']">Parent Account must be at least 3 characters</div>
                           </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="message" id="title" data-i18n="message" name="description" style="color: black; font-weight: bold;">Account Description</label>
-                    <textarea class="form-control" #description="ngModel" id="message" ngModel name="description" style="background-color: white; color: black; border-color: black;"></textarea>
-                    <div *ngIf="description.touched && description.invalid" class="text-danger">
-                        <div *ngIf="description.errors?.['required']">description is required</div>
+                    <label for="AccountDescription" id="title" data-i18n="message" name="AccountDescription" style="color: black; font-weight: bold;">Account Description</label>
+                    <textarea [(ngModel)]="accountData.AccountDescription" name="AccountDescription" class="form-control" #AccountDescription="ngModel" id="message" ngModel style="background-color: white; color: black; border-color: black;"></textarea>
+                    <div *ngIf="AccountDescription.touched && AccountDescription.invalid" class="text-danger">
+                        <div *ngIf="AccountDescription.errors?.['required']">description is required</div>
                     </div>
                 </div>
                 <button  type="submit" class="btn font-weight-bold atlas-cta atlas-cta-wide my-3" id="green_btn"  style="font-weight: bold;">Add Account</button>

@@ -11,6 +11,9 @@ export class DataService {
   private apifaqUrl = 'http://164.90.138.198/api/website/faq';
   private apicityUrl ='http://164.90.138.198/api/app/cities'
 
+  baseUrl = 'http://164.90.138.198/api/app/';
+  token: string = ''; // Store token here
+
   constructor(private http: HttpClient) { }
 
   fetchPricingData(): Observable<any> {
@@ -33,4 +36,22 @@ export class DataService {
     const url = `${this.apicityUrl}?lang=${lang}`;    
     return this.http.get(url);
   }
+
+
+  // Get company accounts
+  getAccounts(token: string): Observable<any> {
+    return this.http.post(this.baseUrl + 'getAccounts', { token });
+  }
+
+  // Add account
+  addAccount(token: string, accountData: any): Observable<any> {
+    return this.http.post(this.baseUrl + 'addAccount', { token, ...accountData });
+  }
+
+  // Get account by id
+  getAccountById(token: string, id: number): Observable<any> {
+    return this.http.post(this.baseUrl + 'getAccountById', { token, id });
+  }
+
+
 }

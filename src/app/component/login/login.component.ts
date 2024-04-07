@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   errorResponse!:string
   error:boolean=false
   lang:any
+  @ViewChild('loginForm') loginForm!: NgForm;
 
 
   private translations: { [key: string]: { [key: string]: string } } = {};
@@ -36,10 +37,21 @@ export class LoginComponent implements OnInit {
     this.lang=this.selectedLanguage
   }
 
-  login(credentials: NgForm): void {    
-  
-      this.service.login(credentials,this.selectedLanguage)
-      .subscribe(response => {
+  login(): void {    
+
+    const username = this.loginForm.value.username;
+    const password = this.loginForm.value.password;
+    const lang = this.selectedLanguage; 
+
+    const requestBody = {
+      username: username,
+      password: password,
+      lang: lang
+    };
+    console.log("request before" , requestBody);
+    
+    
+      this.service.login(requestBody).subscribe(response => {
         console.log('Login successful:');
         console.log(response);
         if(response.message){
@@ -49,7 +61,7 @@ export class LoginComponent implements OnInit {
             // put the token in the local storage 
             
             window.localStorage.setItem("token",response.token)
-        credentials.reset
+        this.loginForm.reset
         this.success = true
           this.error=false
           this.errorResponse=''

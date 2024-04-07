@@ -19,11 +19,9 @@ export class AuthService {
     return this.http.post<any>(apiUrlWithLang, userData);
   }
 
-  login(credentials: any, lang:any): Observable<any> {
-    console.log(lang);
+  login(credentials: any): Observable<any> {
     
-    const apiUrlWithLang = `${this.apiLoginUrl}?lang=${lang}`;
-    console.log(apiUrlWithLang);
-    return this.http.post<any>(apiUrlWithLang, credentials);
+    
+    return this.http.post<any>(this.apiLoginUrl, credentials);
   }
 }

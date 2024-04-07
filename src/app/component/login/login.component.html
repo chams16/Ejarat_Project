@@ -13,36 +13,31 @@
                 <!-- <img src="images/signup-bg.jpg" alt=""> -->
                 <div class="container">
                     <div class="signup-content">
-                        <form  id="signup-form" class="signup-form" (ngSubmit)="login(loginForm.value)" #loginForm="ngForm">
-                            
-                            <h2 class="form-title">{{getTranslation('LOGIN')}} </h2>
-                            <div [ngClass]="{'success-class': success, 'error-class': !success}" >
-                                {{DemoResponse}}
+                        <form id="signup-form" class="signup-form" (ngSubmit)="login()" #loginForm="ngForm">
+                            <h2 class="form-title">{{ getTranslation('LOGIN') }}</h2>
+                            <div [ngClass]="{ 'success-class': success, 'error-class': !success }">
+                                {{ DemoResponse }}
                             </div>
-                            <div class="validation-class" *ngIf="error" >
-                                    <li>{{errorResponse}}</li>
+                            <div class="validation-class" *ngIf="error">
+                                <li>{{ errorResponse }}</li>
                             </div>
                         
-                                <div class="form-group">
-                                    <input type="text" class="form-input form-control" name="username" id="username" #username="ngModel" ngModel required  [placeholder]="getEmailPlaceholderText()"/>
-                                    
-                                </div>
-                    
-                            
-                                <div class="form-group">
-                                    <input type="password" class="form-input form-control" name="password" #password="ngModel" ngModel required id="password" [placeholder]="getPlaceholderText()" maxlength="14" minlength="7"/>
-                                    <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
-                                    
-                                </div>
-                            
-                        
-                            
                             <div class="form-group">
-                                <button type="submit"   class=" form-submit"  data-i18n="signup">{{getTranslation('LOGIN')}} </button>
+                                <input type="text" class="form-input form-control" name="username" id="username" #username="ngModel"
+                                    ngModel required [placeholder]="getEmailPlaceholderText()" />
                             </div>
-        
-                           
+                        
+                            <div class="form-group">
+                                <input type="password" class="form-input form-control" name="password" #password="ngModel" ngModel required
+                                    id="password" [placeholder]="getPlaceholderText()" maxlength="14" minlength="7" />
+                                <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                            </div>
+                        
+                            <div class="form-group">
+                                <button type="submit" class="form-submit" data-i18n="signup">{{ getTranslation('LOGIN') }}</button>
+                            </div>
                         </form>
+                        
                         <p class="loginhere" >
                             <span data-i18n="haveAccount">{{getTranslation('DONTHAVEACCOUNT')}} </span><a routerLink="/signup" class="loginhere-link" data-i18n="login">{{getTranslation('SIGNUP')}}</a>
                         </p>

@@ -1,0 +1,171 @@
+<div class="container">
+    <div class="text-center" style="margin-top: 2%;">
+        <h2>Contact</h2>
+    </div>
+   <div class="row" style="margin-top: 2%; margin-bottom: 10px;">
+   <div class="col">
+    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 mb-5 my-md-0 mw-100 navbar-search">
+        <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Filter By Email..."
+                   aria-label="Search" aria-describedby="basic-addon2" 
+                   (input)="filterAccounts($event)">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" style="background-color: #192440; border-color: #00FFAD; border-width: 2px;">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+   </div>
+   <div class="col text-right">
+    <button class="btn pl-4 pr-4" id="green_btn" data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true" class=" btn my-4 font-weight-bold atlas-cta" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    type="button" style="background-color: #192440; border-color: #00FFAD; border-width: 2px; color: white;">NEW</button>
+   </div>
+   </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Contact Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let account of filteredAccounts">
+                <td>{{ account.id }}</td>
+                <td>{{ account.contactName }}</td>
+                <td>{{ account.type }}</td>
+                <td>{{ account.email }}</td>
+                <td>{{ account.balance }}</td>
+                <td>
+                    <div><i class="fa fa-eye" style="font-size:24px"></i></div>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+    
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" #myModal>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Add New Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       
+        <div class="modal-body">
+            <form id="myform" #form="ngForm" (ngSubmit)="addAccount(form)">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="type" id="title" data-i18n="type" name="type"  style="color: black; font-weight: bold; ">Type</label>
+                        <select id="type" name="type" ngModel required>
+                            <option value="tenant">Tenant</option>
+                            <option value="customer">Customer</option>
+                            <option value="owner">Owner</option>
+                            <option value="supplier">Supplier</option>
+                            <option value="employee">Employee</option>
+                            <option value="account">Account</option>
+                          </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="accountType" id="title" data-i18n="accountType" name="accountType"  style="color: black; font-weight: bold; ">Account Type:</label>
+                        <select id="accountType" name="accountType" ngModel required>
+                            <option value="receivable">Receivable</option>
+                            <option value="payable">Payable</option>
+                            <option value="salary">Salary</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="nameEng">Name (English)*:</label>
+                        <input type="text" id="nameEng" name="nameEng" ngModel required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="nameArab">Name (Arabic)*:</label>
+                        <input type="text" id="nameArab" name="nameArab" ngModel required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="invoice">Invoice Name:</label>
+                    <input type="text" id="invoice" name="invoice" ngModel required>
+                </div>
+                <div class="form-group">
+                    <label for="nationality">Nationality:</label>
+                    <input type="text" id="nationality" name="nationality" ngModel required>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" ngModel required>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" ngModel required>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="streetAddress">Street Address:</label>
+                    <input type="text" id="streetAddress" name="streetAddress" ngModel required>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="idNumber">ID Number:</label>
+                    <input type="text" id="idNumber" name="idNumber" ngModel required>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="expiryDate">Expiry Date (dd/mm/yyyy):</label>
+                    <input type="text" id="expiryDate" name="expiryDate" ngModel required>
+                  </div>
+                
+                  <div *ngIf="showAdditionalFields">
+                    <!-- Additional fields -->
+                    <div class="form-group">
+                      <label for="passportNumber">Passport Number:</label>
+                      <input type="text" id="passportNumber" name="passportNumber" ngModel>
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="passportExpiry">Passport Expiry (dd/mm/yyyy):</label>
+                      <input type="text" id="passportExpiry" name="passportExpiry" ngModel>
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="accountNumber">Account Number:</label>
+                      <input type="text" id="accountNumber" name="accountNumber" ngModel>
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="bankName">Bank Name:</label>
+                      <select id="bankName" name="bankName" ngModel>
+                        <option value="adib">ADIB</option>
+                        <option value="cbd">CBD</option>
+                        <option value="ajman">Ajman</option>
+                      </select>
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="iban">IBAN:</label>
+                      <input type="text" id="iban" name="iban" ngModel>
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="vatNumber">VAT Number:</label>
+                      <input type="text" id="vatNumber" name="vatNumber" ngModel>
+                    </div>
+                  </div>
+                
+                  <button type="button" (click)="toggleAdditionalFields()">Toggle Additional Fields</button>
+                  <button  type="submit" class="btn font-weight-bold atlas-cta atlas-cta-wide my-3" id="green_btn"  style="font-weight: bold;">Add Account</button>
+
+                </form>
+        </div>
+      </div>
+    </div>
+  </div>

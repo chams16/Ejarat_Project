@@ -1,22 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-chart-account',
-  templateUrl: './chart-account.component.html',
-  styleUrls: ['./chart-account.component.css']
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.css']
 })
-export class ChartAccountComponent implements OnInit{
+export class ContactComponent {
+
   accounts = [
-    { accCode: '1000', accountName: 'CASH', accountType: 'Asset', subAccount: 'Current Asset', balance: 56 },
-    { accCode: '2000', accountName: 'Account Payable', accountType: 'Liability', subAccount: 'Current Liability', balance: 85 },
-    { accCode: '3000', accountName: 'Retained Earning', accountType: 'Owner Equity', subAccount: 'Retained Earnings', balance: 45 },
-    { accCode: '4000', accountName: 'Rent Revenue', accountType: 'Income', subAccount: 'Revenue', balance: 57 },
-    { accCode: '5000', accountName: 'Stationary', accountType: 'Expenses', subAccount: 'General Expenses', balance: 29 }
+    { id: '1', contactName: 'CASH', type: 'Asset', email: 'Current Asset',mobile:'', balance: 56 },
+    { id: '2', contactName: 'Account Payable', type: 'Liability', email: 'Current Liability', mobile:'',   balance: 85 },
+    { id: '3', contactName: 'Retained Earning', type: 'Owner Equity', email: 'Retained Earnings', mobile:'',  balance: 45 },
+    { id: '4', contactName: 'Rent Revenue', type: 'Income', email: 'Revenue', mobile:'',  balance: 57 },
+    { id: '5', contactName: 'Stationary', type: 'Expenses', email: 'General Expenses', mobile:'',  balance: 29 }
 ];
   filteredAccounts: any[];
   accountData: any = {};
   token: string | null = null;
+
+  showAdditionalFields: boolean = false;
 
   constructor(private data:DataService) {
       // Initialize filtered accounts with all accounts initially
@@ -37,11 +41,15 @@ export class ChartAccountComponent implements OnInit{
     }
   }
 
+  toggleAdditionalFields(): void {
+    this.showAdditionalFields = !this.showAdditionalFields;
+  }
+
   filterAccounts(event: any) {
     const searchTerm = event.target.value;
     // Filter accounts based on account name
     this.filteredAccounts = this.accounts.filter(account => {
-        return account.accountName.toLowerCase().includes(searchTerm.toLowerCase());
+        return account.contactName.toLowerCase().includes(searchTerm.toLowerCase());
     });
   }
 
@@ -55,8 +63,21 @@ export class ChartAccountComponent implements OnInit{
     });
   }
 
-  addAccount() {
-    this.data.addAccount(this.token!, this.accountData).subscribe(response => {
+  addAccount(form: NgForm): void {
+    if (form.valid) {
+      // Submit the form data to the backend API
+      const formData = form.value;
+      console.log(formData); // For testing, remove this line after testing
+      // Example API call
+      // this.http.post('your_backend_api_url', formData).subscribe(response => {
+      //   console.log('Form submitted successfully:', response);
+      // }, error => {
+      //   console.error('Error submitting form:', error);
+      // });
+    } else {
+      console.error('Form is invalid. Please fill in all required fields.');
+    }
+    /*this.data.addAccount(this.token!, this.accountData).subscribe(response => {
       console.log('Account added successfully:', response);
       // Optionally, refresh account list after adding
       this.getAccounts();
@@ -65,7 +86,7 @@ export class ChartAccountComponent implements OnInit{
     }, error => {
       console.error('Error:', error);
       this.handleApiError(error);
-    });
+    });*/
   }
 
   getAccountById(id: number) {

@@ -7,19 +7,24 @@ import { CpanelComponent } from './component/cPanel/cpanel/cpanel.component';
 import { UnitComponent } from './component/cPanel/unit/unit.component';
 import { MaintenanceRequestComponent } from './component/cPanel/maintenance-request/maintenance-request.component';
 import { ChartAccountComponent } from './component/cPanel/chart-account/chart-account.component';
+import { ContactComponent } from './component/cPanel/contact/contact.component';
 
 const routes: Routes = [
-    { path: '', component: MainEjaratComponent },
+    { path: '', component: MainEjaratComponent},
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'cpanel', component:CpanelComponent,
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { 
+    path: 'cpanel', 
+    component: CpanelComponent,
+   
     children: [
       { path: 'unit', component: UnitComponent, outlet: 'sidebar' },
       { path: 'COA', component: ChartAccountComponent, outlet: 'sidebar' },
-      { path: 'maintenace&request', component: MaintenanceRequestComponent, outlet: 'sidebar' }
+      { path: 'maintenance-request', component: MaintenanceRequestComponent, outlet: 'sidebar' },
+      { path: 'contact', component: ContactComponent, outlet: 'sidebar' }
     ]
-}
+  }
   
 ];
 

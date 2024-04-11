@@ -23,6 +23,7 @@ import { CpanelComponent } from './component/cPanel/cpanel/cpanel.component';
 import { UnitComponent } from './component/cPanel/unit/unit.component';
 import { MaintenanceRequestComponent } from './component/cPanel/maintenance-request/maintenance-request.component';
 import { ChartAccountComponent } from './component/cPanel/chart-account/chart-account.component';
+import { ContactComponent } from './component/cPanel/contact/contact.component';
 
 export function HTTPLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http);
@@ -40,7 +41,8 @@ export function HTTPLoaderFactory(http:HttpClient){
     CpanelComponent,
     UnitComponent,
     MaintenanceRequestComponent,
-    ChartAccountComponent
+    ChartAccountComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

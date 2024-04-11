@@ -62,7 +62,7 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="type" id="title" data-i18n="type" name="type"  style="color: black; font-weight: bold; ">Type</label>
-                        <select id="type" name="type" ngModel required>
+                        <select class="form-control" id="type" name="type" ngModel required>
                             <option value="tenant">Tenant</option>
                             <option value="customer">Customer</option>
                             <option value="owner">Owner</option>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="accountType" id="title" data-i18n="accountType" name="accountType"  style="color: black; font-weight: bold; ">Account Type:</label>
-                        <select id="accountType" name="accountType" ngModel required>
+                        <select class="form-control" id="accountType" name="accountType" ngModel required>
                             <option value="receivable">Receivable</option>
                             <option value="payable">Payable</option>
                             <option value="salary">Salary</option>
@@ -82,86 +82,98 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="nameEng">Name (English)*:</label>
-                        <input type="text" id="nameEng" name="nameEng" ngModel required>
+                        <label for="nameEng" style="color: black; font-weight: bold; ">Name (English)*:</label>
+                        <input type="text" id="nameEng" name="nameEng" class="form-control" ngModel required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="nameArab">Name (Arabic)*:</label>
-                        <input type="text" id="nameArab" name="nameArab" ngModel required>
+                        <label for="nameArab" style="color: black; font-weight: bold; ">Name (Arabic)*:</label>
+                        <input type="text" id="nameArab" name="nameArab" class="form-control" ngModel required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="invoice">Invoice Name:</label>
-                    <input type="text" id="invoice" name="invoice" ngModel required>
-                </div>
-                <div class="form-group">
-                    <label for="nationality">Nationality:</label>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="invoice"  id="title" style="color: black; font-weight: bold; ">Invoice Name:*</label>
+                    <input class="form-control" type="text" id="invoice" name="invoice" ngModel required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="nationality"  id="title" style="color: black; font-weight: bold; ">Nationality:</label>
                     <input type="text" id="nationality" name="nationality" ngModel required>
-                  </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="phoneNumber" style="color: black; font-weight: bold; ">Phone Number:</label>
+                        <input class="form-control" type="tel" id="phoneNumber" name="phoneNumber" ngModel required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email" style="color: black; font-weight: bold; ">Email Address:</label>
+                         <input class="form-control" type="email" id="email" name="email" ngModel required>
+                    </div>
+                </div>
+
+                
                 
                   <div class="form-group">
-                    <label for="phoneNumber">Phone Number:</label>
-                    <input type="tel" id="phoneNumber" name="phoneNumber" ngModel required>
+                    <label for="streetAddress" style="color: black; font-weight: bold; ">Street Address:</label>
+                    <input class="form-control" type="text" id="streetAddress" name="streetAddress" ngModel required>
                   </div>
+
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="idNumber" style="color: black; font-weight: bold; ">ID Number:</label>
+                        <input class="form-control" type="text" id="idNumber" name="idNumber" ngModel required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="expiryDate" style="color: black; font-weight: bold; ">Expiry Date (dd/mm/yyyy):</label>
+                        <input class="form-control" type="text" id="expiryDate" name="expiryDate" ngModel required>
+                    </div>
+                </div>
                 
-                  <div class="form-group">
-                    <label for="email">Email Address:</label>
-                    <input type="email" id="email" name="email" ngModel required>
-                  </div>
-                
-                  <div class="form-group">
-                    <label for="streetAddress">Street Address:</label>
-                    <input type="text" id="streetAddress" name="streetAddress" ngModel required>
-                  </div>
-                
-                  <div class="form-group">
-                    <label for="idNumber">ID Number:</label>
-                    <input type="text" id="idNumber" name="idNumber" ngModel required>
-                  </div>
-                
-                  <div class="form-group">
-                    <label for="expiryDate">Expiry Date (dd/mm/yyyy):</label>
-                    <input type="text" id="expiryDate" name="expiryDate" ngModel required>
-                  </div>
                 
                   <div *ngIf="showAdditionalFields">
                     <!-- Additional fields -->
-                    <div class="form-group">
-                      <label for="passportNumber">Passport Number:</label>
-                      <input type="text" id="passportNumber" name="passportNumber" ngModel>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="passportNumber" style="color: black; font-weight: bold; ">Passport Number:</label>
+                             <input class="form-control" type="text" id="passportNumber" name="passportNumber" ngModel>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="passportExpiry" style="color: black; font-weight: bold; ">Passport Expiry (dd/mm/yyyy):</label>
+                            <input class="form-control" type="text" id="passportExpiry" name="passportExpiry" ngModel>
+                        </div>
                     </div>
-                
-                    <div class="form-group">
-                      <label for="passportExpiry">Passport Expiry (dd/mm/yyyy):</label>
-                      <input type="text" id="passportExpiry" name="passportExpiry" ngModel>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="accountNumber" style="color: black; font-weight: bold; ">Account Number:</label>
+                            <input class="form-control" type="text" id="accountNumber" name="accountNumber" ngModel>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="bankName" style="color: black; font-weight: bold; ">Bank Name:</label>
+                            <select class="form-control" id="bankName" name="bankName" ngModel>
+                                <option value="adib">ADIB</option>
+                                <option value="cbd">CBD</option>
+                                <option value="ajman">Ajman</option>
+                            </select>
+                        </div>
                     </div>
-                
-                    <div class="form-group">
-                      <label for="accountNumber">Account Number:</label>
-                      <input type="text" id="accountNumber" name="accountNumber" ngModel>
+
+                    <div class="row" >
+                        <div class="form-group col-md-6">
+                            <label for="iban" style="color: black; font-weight: bold; ">IBAN:</label>
+                            <input type="text" id="iban" name="iban" ngModel>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <label for="vatNumber" style="color: black; font-weight: bold; ">VAT Number:</label>
+                            <input class="form-control" type="text" id="vatNumber" name="vatNumber" ngModel>
+                        </div>
                     </div>
-                
-                    <div class="form-group">
-                      <label for="bankName">Bank Name:</label>
-                      <select id="bankName" name="bankName" ngModel>
-                        <option value="adib">ADIB</option>
-                        <option value="cbd">CBD</option>
-                        <option value="ajman">Ajman</option>
-                      </select>
-                    </div>
-                
-                    <div class="form-group">
-                      <label for="iban">IBAN:</label>
-                      <input type="text" id="iban" name="iban" ngModel>
-                    </div>
-                
-                    <div class="form-group">
-                      <label for="vatNumber">VAT Number:</label>
-                      <input type="text" id="vatNumber" name="vatNumber" ngModel>
-                    </div>
+        
                   </div>
                 
-                  <button type="button" (click)="toggleAdditionalFields()">Toggle Additional Fields</button>
+                  <button type="button" (click)="toggleAdditionalFields()" class="btn font-weight-bold atlas-cta atlas-cta-wide my-3" id="green_btn"  style="font-weight: bold;">Toggle Additional Fields</button>
                   <button  type="submit" class="btn font-weight-bold atlas-cta atlas-cta-wide my-3" id="green_btn"  style="font-weight: bold;">Add Account</button>
 
                 </form>

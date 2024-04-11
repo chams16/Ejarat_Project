@@ -1,4 +1,6 @@
+import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -55,17 +57,27 @@ export class ChartAccountComponent implements OnInit{
     });
   }
 
-  addAccount() {
-    this.data.addAccount(this.token!, this.accountData).subscribe(response => {
-      console.log('Account added successfully:', response);
-      // Optionally, refresh account list after adding
-      this.getAccounts();
-      // Clear form after successful addition
-      this.accountData = {};
-    }, error => {
-      console.error('Error:', error);
-      this.handleApiError(error);
-    });
+  addAccount(form:NgForm) {
+    console.log(form.value);
+    
+    if (form.valid) {
+      // Submit the form data to the backend API
+      const formData = form.value;
+      console.log(formData); // For testing, remove this line after testing
+      this.data.addAccount(this.token!, this.accountData).subscribe(response => {
+        console.log('Account added successfully:', response);
+        // Optionally, refresh account list after adding
+        this.getAccounts();
+        // Clear form after successful addition
+        form.reset;
+      }, error => {
+        console.error('Error:', error);
+        this.handleApiError(error);
+      });
+    } else {
+      console.error('Form is invalid. Please fill in all required fields.');
+    }
+    
   }
 
   getAccountById(id: number) {

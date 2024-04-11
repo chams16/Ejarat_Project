@@ -58,7 +58,7 @@
         </div>
        
         <div class="modal-body">
-            <form id="myform" (ngSubmit)="addAccount()">
+            <form id="myform" #form="ngForm" (ngSubmit)="addAccount(form)">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="titleAr" id="title" data-i18n="titleAr" name="titleAr"  style="color: black; font-weight: bold; ">TitleAR</label>

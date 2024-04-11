@@ -68,25 +68,20 @@ export class ContactComponent {
       // Submit the form data to the backend API
       const formData = form.value;
       console.log(formData); // For testing, remove this line after testing
-      // Example API call
-      // this.http.post('your_backend_api_url', formData).subscribe(response => {
-      //   console.log('Form submitted successfully:', response);
-      // }, error => {
-      //   console.error('Error submitting form:', error);
-      // });
+      this.data.addAccount(this.token!, this.accountData).subscribe(response => {
+        console.log('Account added successfully:', response);
+        // Optionally, refresh account list after adding
+        this.getAccounts();
+        // Clear form after successful addition
+        form.reset;
+      }, error => {
+        console.error('Error:', error);
+        this.handleApiError(error);
+      });
     } else {
       console.error('Form is invalid. Please fill in all required fields.');
     }
-    /*this.data.addAccount(this.token!, this.accountData).subscribe(response => {
-      console.log('Account added successfully:', response);
-      // Optionally, refresh account list after adding
-      this.getAccounts();
-      // Clear form after successful addition
-      this.accountData = {};
-    }, error => {
-      console.error('Error:', error);
-      this.handleApiError(error);
-    });*/
+    /**/
   }
 
   getAccountById(id: number) {

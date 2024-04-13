@@ -44,8 +44,8 @@ export class DataService {
   }
 
   // Add account
-  addAccount(token: string, accountData: any): Observable<any> {
-    return this.http.post(this.baseUrl + 'addAccount', { token, ...accountData });
+  addAccount( accountData: any): Observable<any> {
+    return this.http.post(this.baseUrl + 'addAccount', accountData );
   }
 
   // Get account by id

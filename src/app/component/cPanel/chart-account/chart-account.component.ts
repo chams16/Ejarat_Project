@@ -1,6 +1,8 @@
 import { NgFor } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Route, Router } from '@angular/router';
+import { Account } from 'src/app/DataType/Accounts';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -9,32 +11,34 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./chart-account.component.css']
 })
 export class ChartAccountComponent implements OnInit{
-  accounts = [
-    { accCode: '1000', accountName: 'CASH', accountType: 'Asset', subAccount: 'Current Asset', balance: 56 },
-    { accCode: '2000', accountName: 'Account Payable', accountType: 'Liability', subAccount: 'Current Liability', balance: 85 },
-    { accCode: '3000', accountName: 'Retained Earning', accountType: 'Owner Equity', subAccount: 'Retained Earnings', balance: 45 },
-    { accCode: '4000', accountName: 'Rent Revenue', accountType: 'Income', subAccount: 'Revenue', balance: 57 },
-    { accCode: '5000', accountName: 'Stationary', accountType: 'Expenses', subAccount: 'General Expenses', balance: 29 }
-];
+  accounts:Account[] = [];
   filteredAccounts: any[];
   accountData: any = {};
   token: string | null = null;
+  errorResponse!:string
+  error:boolean=false
+  success:boolean=false
+  successResponse!:string
+  contactItem:any={}
+  @ViewChild('myModal') modal: any;
 
-  constructor(private data:DataService) {
+  constructor(private data:DataService,private route:Router) {
       // Initialize filtered accounts with all accounts initially
       this.filteredAccounts = this.accounts;
+      this.getAccounts
+      this.token=localStorage.getItem('token');
   }
 
   ngOnInit(): void {
       // Retrieve token from localStorage
     this.token = localStorage.getItem('token');
     console.log("token",this.token);
-    
+   
     if (this.token) {
       console.log("test");
-      
       this.getAccounts();
     } else {
+      this.route.navigate(['/login'])
       // Handle case where token is not available (e.g., redirect to login)
     }
   }
@@ -42,47 +46,61 @@ export class ChartAccountComponent implements OnInit{
   filterAccounts(event: any) {
     const searchTerm = event.target.value;
     // Filter accounts based on account name
-    this.filteredAccounts = this.accounts.filter(account => {
-        return account.accountName.toLowerCase().includes(searchTerm.toLowerCase());
+    this.filteredAccounts = this.filteredAccounts.filter(account => {
+        return account.AccountDescription.toLowerCase().includes(searchTerm.toLowerCase());
     });
   }
 
   getAccounts() {
     this.data.getAccounts(this.token!).subscribe(response => {
-     console.log(response);
-     
+      if(response.message){
+        this.route.navigate(['/login'])
+      }
+     this.filteredAccounts=response
+     this.accounts=response
     }, error => {
       console.error('Error:', error);
       this.handleApiError(error);
     });
   }
 
-  addAccount(form:NgForm) {
-    console.log(form.value);
-    
-    if (form.valid) {
-      // Submit the form data to the backend API
-      const formData = form.value;
-      console.log(formData); // For testing, remove this line after testing
-      this.data.addAccount(this.token!, this.accountData).subscribe(response => {
-        console.log('Account added successfully:', response);
-        // Optionally, refresh account list after adding
-        this.getAccounts();
-        // Clear form after successful addition
-        form.reset;
+  addAccount(form:any) {
+      
+      console.log(form.value); // For testing, remove this line after testing
+      const formDataWithToken = { ...form.value, token: this.token };
+      console.log(formDataWithToken);
+      this.data.addAccount(formDataWithToken).subscribe(response => {
+        if(response.message !="Successfully"){
+          this.error = true
+          this.success=false
+          this.errorResponse = response.message
+          form.reset()
+        }else{
+          console.log('Account added successfully:', response);
+          // Optionally, refresh account list after adding
+          this.getAccounts();
+          // Clear form after successful addition
+          form.reset();
+          this.success = true
+            this.error=false
+            this.errorResponse=''
+            this.successResponse = response.message
+            this.modal.hide()
+        }
+       
       }, error => {
         console.error('Error:', error);
+        this.success=false
+        this.successResponse=error.message
         this.handleApiError(error);
       });
-    } else {
-      console.error('Form is invalid. Please fill in all required fields.');
-    }
+    
     
   }
 
   getAccountById(id: number) {
     this.data.getAccountById(this.token!, id).subscribe(response => {
-      console.log('Account:', response);
+      this.contactItem=response
     }, error => {
       console.error('Error:', error);
       this.handleApiError(error);

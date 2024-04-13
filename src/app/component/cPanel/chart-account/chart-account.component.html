@@ -35,13 +35,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let account of filteredAccounts">
-                <td>{{ account.accCode }}</td>
-                <td>{{ account.accountName }}</td>
-                <td>{{ account.accountType }}</td>
-                <td>{{ account.subAccount }}</td>
-                <td>{{ account.balance }}</td>
+                <td>{{ account.accountCode }}</td>
+                <td>{{ account.AccountDescription }}</td>
+                <td>{{ account.titleAr }}</td>
+                <td>{{ account.titleEn }}</td>
+                <td>{{ account.status }}</td>
                 <td>
-                    <div><i class="fa fa-eye" style="font-size:24px"></i></div>
+                    <div data-aos="fade" data-aos-easing="linear" data-aos-duration="1000" data-aos-once="true" class=" btn" data-bs-toggle="modal" data-bs-target="#detailModal"
+                     (click)="getAccountById(account.id)"><i class="fa fa-eye" style="font-size:24px;cursor: pointer;"></i></div>
                 </td>
             </tr>
         </tbody>
@@ -59,9 +60,19 @@
        
         <div class="modal-body">
             <form id="myform" #form="ngForm" (ngSubmit)="addAccount(form)">
+                <div>
+                    <div [ngClass]="{ 'success-class': success, 'error-class': !success }">
+                        {{ successResponse }}
+                    </div>
+                    <div class="validation-class" *ngIf="error">
+                        <li>{{ errorResponse }}</li>
+                    </div>
+                
+                </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="titleAr" id="title" data-i18n="titleAr" name="titleAr"  style="color: black; font-weight: bold; ">TitleAR</label>
+                        
                         <input type="text" [(ngModel)]="accountData.titleAr" minlength="3" class="form-control" id="titleAr" name="titleAr" #titleAr="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
                         <div *ngIf="titleAr.touched && titleAr.invalid" class="text-danger">
                             <div *ngIf="titleAr.errors?.['required']">Title in Arabic is required</div>
@@ -88,11 +99,8 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="parentAccountId" id="title" data-i18n="name" name="parentAccountId"  style="color: black; font-weight: bold; ">Parent Account ID</label>
-                        <input  [(ngModel)]="accountData.parentAccountId" type="text" minlength="3" class="form-control" id="parentAccountId" name="parentAccountId" #parentAccountId="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
-                        <div *ngIf="parentAccountId.touched && parentAccountId.invalid" class="text-danger">
-                            <div *ngIf="parentAccountId.errors?.['required']">Parent Account is required</div>
-                            <div *ngIf="parentAccountId.errors?.['minLength']">Parent Account must be at least 3 characters</div>
-                          </div>
+                        <input  [(ngModel)]="accountData.parentAccountId" type="text" minlength="3" class="form-control" id="parentAccountId" name="parentAccountId" #parentAccountId="ngModel" ngModel style="background-color: white; color: black; border-color: black;">
+                       
                     </div>
                 </div>
                 <div class="form-group">
@@ -104,6 +112,50 @@
                 </div>
                 <button  type="submit" class="btn font-weight-bold atlas-cta atlas-cta-wide my-3" id="green_btn"  style="font-weight: bold;">Add Account</button>
             </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Account Detail</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       
+        <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="titleAr" id="title" data-i18n="titleAr" name="titleAr"  style="color: black; font-weight: bold; ">TitleAR</label>
+                        
+                        <input type="text" [(ngModel)]="accountData.titleAr" minlength="3" class="form-control" id="titleAr" name="titleAr" #titleAr="ngModel" disabled ngModel placeholder="{{contactItem.titleAr}}" style="background-color: white; color: black; border-color: black;">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="titleEn" id="title" data-i18n="titleEn" name="titleEn"  style="color: black; font-weight: bold; ">TitleEn</label>
+                        <input type="text" minlength="3" [(ngModel)]="accountData.titleEn" class="form-control" disabled placeholder="{{contactItem.titleEn}}" id="titleEn" name="titleEn" #titleEn="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="accountCode" id="title" data-i18n="accountCode" name="accountCode"  style="color: black; font-weight: bold; ">Account Code</label>
+                        <input type="text" [(ngModel)]="accountData.accountCode" name="accountCode" disabled placeholder="{{contactItem.accountCode}}" minlength="3" class="form-control" id="accountCode" #accountCode="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
+                        
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="parentAccountId" id="title" data-i18n="name" name="parentAccountId"  style="color: black; font-weight: bold; ">Parent Account ID</label>
+                        <input  [(ngModel)]="accountData.parentAccountId" type="text" minlength="3" disabled class="form-control" id="parentAccountId" name="parentAccountId" #parentAccountId="ngModel" ngModel style="background-color: white; color: black; border-color: black;">
+                       
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="AccountDescription" id="title" data-i18n="message" name="AccountDescription" style="color: black; font-weight: bold;">Account Description</label>
+                    <textarea [(ngModel)]="accountData.AccountDescription" disabled placeholder="{{contactItem.AccountDescription}}" name="AccountDescription" class="form-control" #AccountDescription="ngModel" id="message" ngModel style="background-color: white; color: black; border-color: black;"></textarea>
+                    
+                </div>
         </div>
       </div>
     </div>

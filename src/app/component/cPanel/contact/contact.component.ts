@@ -63,12 +63,13 @@ export class ContactComponent {
     });
   }
 
-  addAccount(form: NgForm): void {
+  addAccount(form: any): void {
+    form.token = this.token
     if (form.valid) {
       // Submit the form data to the backend API
       const formData = form.value;
       console.log(formData); // For testing, remove this line after testing
-      this.data.addAccount(this.token!, this.accountData).subscribe(response => {
+      this.data.addAccount(form).subscribe(response => {
         console.log('Account added successfully:', response);
         // Optionally, refresh account list after adding
         this.getAccounts();
@@ -85,12 +86,12 @@ export class ContactComponent {
   }
 
   getAccountById(id: number) {
-    this.data.getAccountById(this.token!, id).subscribe(response => {
+    /*this.data.getAccountById(id).subscribe(response => {
       console.log('Account:', response);
     }, error => {
       console.error('Error:', error);
       this.handleApiError(error);
-    });
+    });*/
   }
 
 

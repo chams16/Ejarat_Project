@@ -58,11 +58,11 @@ export class LoginComponent implements OnInit {
           this.error = true
           this.errorResponse = response.message
         }else if(response.token){
-            // put the token in the local storage 
+          // put the token in the local storage 
             
-            window.localStorage.setItem("token",response.token)
-        this.loginForm.reset
-        this.success = true
+          window.localStorage.setItem("token",response.token)
+          this.loginForm.reset
+          this.success = true
           this.error=false
           this.errorResponse=''
           this.DemoResponse = this.getWelcomeMsg()

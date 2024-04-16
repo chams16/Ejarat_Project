@@ -48,7 +48,7 @@
         </tbody>
       </table>
       <div>
-        <div class="validation-class">
+        <div class="validation-class" *ngIf="filteredAccounts.length<1">
             There's no account yet, you have to add an account
         </div>
       </div>
@@ -106,14 +106,14 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="mainAccount" id="title" data-i18n="name" name="mainAccount"  style="color: black; font-weight: bold; ">Main Account ID</label>
-                        <select id="mainAccount" (change)="onFirstDropdownChange()" name="mainAccount" [(ngModel)]="selectedId" class="form-control" style="background-color: white; color: black; border-color: black;" #mainAccount="ngModel" ngModel>
+                        <label for="mainAccountId" id="title" data-i18n="name" name="mainAccountId"  style="color: black; font-weight: bold; ">Main Account ID</label>
+                        <select id="mainAccountId" (change)="onFirstDropdownChange()" name="mainAccountId" [(ngModel)]="selectedId" [(ngModel)]="accountData.mainAccountId" class="form-control" style="background-color: white; color: black; border-color: black;" #mainAccountId="ngModel" ngModel>
                             <option *ngFor="let value of dropdownValues" [value]="value.id">{{ value.title }}</option>
                           </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="subMainAccount" id="title" data-i18n="name" name="subMainAccount"  style="color: black; font-weight: bold; ">Sub Main Account ID</label>
-                        <select id="subMainAccount" name="subMainAccount" [(ngModel)]="accountData.subMainAccount" class="form-control" style="background-color: white; color: black; border-color: black;" #subMainAccount="ngModel" ngModel>
+                        <label for="subMainAccountId" id="title" data-i18n="name" name="subMainAccountId"  style="color: black; font-weight: bold; ">Sub Main Account ID</label>
+                        <select id="subMainAccountId" name="subMainAccountId" [(ngModel)]="accountData.subMainAccountId" class="form-control" style="background-color: white; color: black; border-color: black;" #subMainAccountId="ngModel" ngModel>
                             <option *ngFor="let value of secondDropdownValues" [value]="value.id">{{ value.title }}</option>
                           </select>                       
                     </div>
@@ -155,15 +155,21 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col">
                         <label for="accountCode" id="title" data-i18n="accountCode" name="accountCode"  style="color: black; font-weight: bold; ">Account Code</label>
                         <input type="text" [(ngModel)]="accountData.accountCode" name="accountCode" disabled placeholder="{{contactItem.accountCode}}" minlength="3" class="form-control" id="accountCode" #accountCode="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
                         
                     </div>
+                </div>
+                <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="parentAccountId" id="title" data-i18n="name" name="parentAccountId"  style="color: black; font-weight: bold; ">Parent Account ID</label>
-                        <input  [(ngModel)]="accountData.parentAccountId" type="text" minlength="3" disabled class="form-control" id="parentAccountId" name="parentAccountId" #parentAccountId="ngModel" ngModel style="background-color: white; color: black; border-color: black;">
-                       
+                        <label for="mainAccountId" id="title" data-i18n="name" name="mainAccountId"  style="color: black; font-weight: bold; ">Main Account </label>
+                        <input type="text" [(ngModel)]="accountData.mainAccountId" name="accountCode" disabled placeholder="{{contactItem.mainAccountNameEn}}" minlength="3" class="form-control" id="accountCode" #accountCode="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="subMainAccountId" id="title" data-i18n="name" name="subMainAccountId"  style="color: black; font-weight: bold; ">Sub Main Account </label>
+                        <input type="text" [(ngModel)]="accountData.subMainAccountId" name="accountCode" disabled placeholder="{{contactItem.subMainAccountNameEn}}" minlength="3" class="form-control" id="accountCode" #accountCode="ngModel" ngModel required style="background-color: white; color: black; border-color: black;">
+                      
                     </div>
                 </div>
                 <div class="form-group">

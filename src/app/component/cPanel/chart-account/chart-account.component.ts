@@ -72,10 +72,9 @@ export class ChartAccountComponent implements OnInit{
 
   addAccount(form:any) {
     this.accountData.mainAccounts = this.selectedId
-      console.log(form.value); // For testing, remove this line after testing
       const formDataWithToken = { ...form.value, token: this.token };
       console.log(formDataWithToken);
-      /*this.data.addAccount(formDataWithToken).subscribe(response => {
+      this.data.addAccount(formDataWithToken).subscribe(response => {
         if(response.message !="Successfully"){
           this.error = true
           this.success=false
@@ -99,13 +98,13 @@ export class ChartAccountComponent implements OnInit{
         this.success=false
         this.successResponse=error.message
         this.handleApiError(error);
-      });*/
+      });
     
     
   }
 
   getAccountById(id: number) {
-    this.data.getAccountById(this.token!, id).subscribe(response => {
+    this.data.getAccountById(this.token!, id).subscribe(response => {      
       this.contactItem=response
     }, error => {
       console.error('Error:', error);
@@ -120,8 +119,8 @@ export class ChartAccountComponent implements OnInit{
   }
 
   onFirstDropdownChange() {    
-    this.data.fetchSecondDropdownValues(this.token,this.selectedId).subscribe(values => {
-      console.log(values);
+   
+    this.data.fetchSecondDropdownValues(this.token!,this.selectedId).subscribe(values => {
       
       this.secondDropdownValues = values;
     });

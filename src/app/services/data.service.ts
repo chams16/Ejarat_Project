@@ -53,5 +53,14 @@ export class DataService {
     return this.http.post(this.baseUrl + 'getAccountById', { token, id });
   }
 
+  fetchDropdownValues(token: string): Observable<any> {
+    return this.http.post(this.baseUrl + 'getMainAccounts', { token });
+  }
+
+  fetchSecondDropdownValues(id: any, token: string): Observable<any> {
+    // Assuming the API endpoint accepts ID and token as query parameters
+    return this.http.post(this.baseUrl + `getSubMainAccounts`, {token,id });
+  }
+
 
 }

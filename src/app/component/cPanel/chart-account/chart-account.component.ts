@@ -22,11 +22,17 @@ export class ChartAccountComponent implements OnInit{
   contactItem:any={}
   @ViewChild('myModal') modal: any;
 
+  dropdownValues!: any[]
+  secondDropdownValues!: any[] 
+  selectedValue!: string;
+  selectedId!: any;
+
   constructor(private data:DataService,private route:Router) {
       // Initialize filtered accounts with all accounts initially
       this.filteredAccounts = this.accounts;
       this.getAccounts
       this.token=localStorage.getItem('token');
+      this.fetchDropdownValues()
   }
 
   ngOnInit(): void {
@@ -65,11 +71,11 @@ export class ChartAccountComponent implements OnInit{
   }
 
   addAccount(form:any) {
-      
+    this.accountData.mainAccounts = this.selectedId
       console.log(form.value); // For testing, remove this line after testing
       const formDataWithToken = { ...form.value, token: this.token };
       console.log(formDataWithToken);
-      this.data.addAccount(formDataWithToken).subscribe(response => {
+      /*this.data.addAccount(formDataWithToken).subscribe(response => {
         if(response.message !="Successfully"){
           this.error = true
           this.success=false
@@ -93,7 +99,7 @@ export class ChartAccountComponent implements OnInit{
         this.success=false
         this.successResponse=error.message
         this.handleApiError(error);
-      });
+      });*/
     
     
   }
@@ -104,6 +110,20 @@ export class ChartAccountComponent implements OnInit{
     }, error => {
       console.error('Error:', error);
       this.handleApiError(error);
+    });
+  }
+
+  fetchDropdownValues() {
+    this.data.fetchDropdownValues(this.token!).subscribe(values => {      
+      this.dropdownValues = values;
+    });
+  }
+
+  onFirstDropdownChange() {    
+    this.data.fetchSecondDropdownValues(this.token,this.selectedId).subscribe(values => {
+      console.log(values);
+      
+      this.secondDropdownValues = values;
     });
   }
 

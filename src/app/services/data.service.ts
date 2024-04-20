@@ -48,6 +48,10 @@ export class DataService {
     return this.http.post(this.baseUrl + 'addAccount', accountData );
   }
 
+  addContact( contactData: any): Observable<any> {
+    return this.http.post(this.baseUrl + 'addAccount', contactData );
+  }
+
   // Get account by id
   getAccountById(token: string, id: number): Observable<any> {
     return this.http.post(this.baseUrl + 'getAccountById', { token, id });
@@ -57,9 +61,25 @@ export class DataService {
     return this.http.post(this.baseUrl + 'getMainAccounts', { token });
   }
 
+  fetchContactTypeValues(token: string): Observable<any> {
+    return this.http.post(this.baseUrl + 'getContactTypes', { token });
+  }
+
+  fetchBankValues(token: string): Observable<any> {
+    return this.http.post(this.baseUrl + 'getBanks', { token });
+  }
+
+  fetchNationalitiesValues(token: string): Observable<any> {
+    return this.http.post(this.baseUrl + 'getNationalities', { token });
+  }
+
   fetchSecondDropdownValues(token: string,id: number): Observable<any> {
     // Assuming the API endpoint accepts ID and token as query parameters
     return this.http.post(this.baseUrl + `getSubMainAccounts`, {token,id });
+  }
+
+  getContacts(token: string): Observable<any> {
+    return this.http.post(this.baseUrl + 'getContacts', { token });
   }
 
 
